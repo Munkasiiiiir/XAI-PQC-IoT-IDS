@@ -1,0 +1,152 @@
+{
+  "edge_iiot": {
+    "class_names": [
+      "backdoor",
+      "ddos_http",
+      "ddos_icmp",
+      "ddos_tcp",
+      "ddos_udp",
+      "fingerprinting",
+      "mitm",
+      "normal",
+      "password",
+      "port_scanning",
+      "ransomware",
+      "sql_injection",
+      "uploading",
+      "vulnerability_scanner",
+      "xss"
+    ],
+    "display": "Edge-IIoTset",
+    "dropped_columns": [
+      "frame.time",
+      "ip.src_host",
+      "ip.dst_host",
+      "arp.src.proto_ipv4",
+      "arp.dst.proto_ipv4",
+      "http.file_data",
+      "http.request.full_uri",
+      "http.request.uri.query",
+      "icmp.transmit_timestamp",
+      "tcp.options",
+      "tcp.payload",
+      "tcp.srcport",
+      "tcp.dstport",
+      "udp.port",
+      "dns.qry.name",
+      "mqtt.msg",
+      "mqtt.topic",
+      "arp.opcode",
+      "arp.hw.size",
+      "Attack_label",
+      "Attack_type"
+    ],
+    "files": [
+      {
+        "bytes": 82184390,
+        "path": "datasets\\Edge_IIoTset\\ML-EdgeIIoT-dataset.csv",
+        "sha256": "53101fad091af20bee815860962a5016b802ee45d456a141042f6183094c3c1a"
+      }
+    ],
+    "license": "CC BY 4.0 (free for academic research; cite Ferrag et al. 2022)",
+    "n_features": 42,
+    "rows_after_dedup": 156986,
+    "rows_raw": 157800,
+    "source_url": "https://ieee-dataport.org/documents/edge-iiotset-new-comprehensive-realistic-cyber-security-dataset-iot-and-iiot-applications",
+    "targets": {
+      "binary": "Attack_label",
+      "multi": "Attack_type"
+    },
+    "updated_utc": "2026-11-24T14:23:50Z"
+  },
+  "ton_iot": {
+    "class_names": [
+      "backdoor",
+      "ddos",
+      "dos",
+      "injection",
+      "mitm",
+      "normal",
+      "password",
+      "ransomware",
+      "scanning",
+      "xss"
+    ],
+    "display": "ToN-IoT",
+    "dropped_columns": [
+      "src_ip",
+      "dst_ip",
+      "src_port",
+      "dst_port",
+      "dns_query",
+      "http_uri",
+      "http_user_agent",
+      "ssl_subject",
+      "ssl_issuer",
+      "http_orig_mime_types",
+      "http_resp_mime_types",
+      "weird_addl",
+      "label",
+      "type"
+    ],
+    "files": [
+      {
+        "bytes": 29902775,
+        "path": "datasets\\ToN_IoT\\train_test_network.csv",
+        "sha256": "26ddc513552de36de6428b2e578efaed2b57504c716dfba847cc0109a64e1974"
+      }
+    ],
+    "license": "Academic research use (cite Alsaedi et al. 2020; Booij et al. 2022)",
+    "n_features": 30,
+    "rows_after_dedup": 190474,
+    "rows_raw": 211043,
+    "source_url": "https://research.unsw.edu.au/projects/toniot-datasets",
+    "targets": {
+      "binary": "label",
+      "multi": "type"
+    },
+    "updated_utc": "2026-11-24T14:23:50Z"
+  },
+  "unsw_nb15": {
+    "class_names": [
+      "analysis",
+      "backdoor",
+      "dos",
+      "exploits",
+      "fuzzers",
+      "generic",
+      "normal",
+      "reconnaissance",
+      "shellcode",
+      "worms"
+    ],
+    "display": "UNSW-NB15",
+    "dropped_columns": [
+      "id",
+      "label",
+      "attack_cat"
+    ],
+    "files": [
+      {
+        "bytes": 32293018,
+        "path": "datasets\\UNSW_NB15\\UNSW_NB15_training-set.csv",
+        "sha256": "bec7dd5ec88dc2a0ccc7a07879d338395ed7421750f675fd0339e07dfe0648fa"
+      },
+      {
+        "bytes": 15380800,
+        "path": "datasets\\UNSW_NB15\\UNSW_NB15_testing-set.csv",
+        "sha256": "734fe6642edf758f7c94d7d9149426b49d202fe8e7bf0bef47392489c3c0a559"
+      }
+    ],
+    "license": "Free for academic research (cite Moustafa & Slay 2015, 2016)",
+    "n_features": 42,
+    "rows_after_dedup": 257673,
+    "rows_raw": 257673,
+    "source_url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+    "targets": {
+      "binary": "label",
+      "multi": "attack_cat"
+    },
+    "updated_utc": "2026-11-24T14:23:50Z"
+  }
+}

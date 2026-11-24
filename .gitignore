@@ -18,3 +18,10 @@ Thumbs.db
 *.tmp
 *.log
 cloudstor_page.html
+
+# Multi-seed run outputs: reproducible from the locked config and raw data,
+# but too large for git (~3 GB of joblib models and ~130 MB of raw CSVs).
+artifacts/models/**/
+artifacts/processed/**/
+datasets/UNSW_NB15/
+datasets/Edge_IIoTset/

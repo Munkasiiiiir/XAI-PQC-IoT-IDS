@@ -1,0 +1,1069 @@
+{
+  "dataset": "unsw_nb15",
+  "display": "UNSW-NB15",
+  "seed": 42,
+  "timestamp": "2026-11-24T13:45:49Z",
+  "git_commit": "29acd5c",
+  "config_hash": "9c3a04a1990f01e22fe998e12121534479e07492802640a2e7a10e6ca5abfe49",
+  "raw_rows": 257673,
+  "rows_after_dedup": 257673,
+  "duplicates_removed": 0,
+  "n_train": 206138,
+  "n_test": 51535,
+  "n_features": 42,
+  "n_classes": 10,
+  "class_names": [
+    "analysis",
+    "backdoor",
+    "dos",
+    "exploits",
+    "fuzzers",
+    "generic",
+    "normal",
+    "reconnaissance",
+    "shellcode",
+    "worms"
+  ],
+  "feature_names": [
+    "dur",
+    "proto",
+    "service",
+    "state",
+    "spkts",
+    "dpkts",
+    "sbytes",
+    "dbytes",
+    "rate",
+    "sttl",
+    "dttl",
+    "sload",
+    "dload",
+    "sloss",
+    "dloss",
+    "sinpkt",
+    "dinpkt",
+    "sjit",
+    "djit",
+    "swin",
+    "stcpb",
+    "dtcpb",
+    "dwin",
+    "tcprtt",
+    "synack",
+    "ackdat",
+    "smean",
+    "dmean",
+    "trans_depth",
+    "response_body_len",
+    "ct_srv_src",
+    "ct_state_ttl",
+    "ct_dst_ltm",
+    "ct_src_dport_ltm",
+    "ct_dst_sport_ltm",
+    "ct_dst_src_ltm",
+    "is_ftp_login",
+    "ct_ftp_cmd",
+    "ct_flw_http_mthd",
+    "ct_src_ltm",
+    "ct_srv_dst",
+    "is_sm_ips_ports"
+  ],
+  "categorical_features": [
+    "proto",
+    "service",
+    "state"
+  ],
+  "numeric_features": [
+    "dur",
+    "spkts",
+    "dpkts",
+    "sbytes",
+    "dbytes",
+    "rate",
+    "sttl",
+    "dttl",
+    "sload",
+    "dload",
+    "sloss",
+    "dloss",
+    "sinpkt",
+    "dinpkt",
+    "sjit",
+    "djit",
+    "swin",
+    "stcpb",
+    "dtcpb",
+    "dwin",
+    "tcprtt",
+    "synack",
+    "ackdat",
+    "smean",
+    "dmean",
+    "trans_depth",
+    "response_body_len",
+    "ct_srv_src",
+    "ct_state_ttl",
+    "ct_dst_ltm",
+    "ct_src_dport_ltm",
+    "ct_dst_sport_ltm",
+    "ct_dst_src_ltm",
+    "is_ftp_login",
+    "ct_ftp_cmd",
+    "ct_flw_http_mthd",
+    "ct_src_ltm",
+    "ct_srv_dst",
+    "is_sm_ips_ports"
+  ],
+  "dropped_columns": [
+    "id",
+    "label",
+    "attack_cat"
+  ],
+  "leakage_warnings": [],
+  "models": {
+    "binary": {
+      "RandomForest": {
+        "metrics": {
+          "accuracy": 0.9510429804986902,
+          "precision": 0.963032886723508,
+          "recall": 0.9602550478214665,
+          "f1": 0.9616419612314709,
+          "macro_f1": 0.9469960711104399,
+          "weighted_f1": 0.9510699788408169
+        },
+        "per_class": {
+          "normal": {
+            "precision": 0.929981278416689,
+            "recall": 0.9347311827956989,
+            "f1-score": 0.9323501809894088,
+            "support": 18600.0
+          },
+          "attack": {
+            "precision": 0.963032886723508,
+            "recall": 0.9602550478214665,
+            "f1-score": 0.9616419612314709,
+            "support": 32935.0
+          },
+          "accuracy": 0.9510429804986902,
+          "macro avg": {
+            "precision": 0.9465070825700985,
+            "recall": 0.9474931153085827,
+            "f1-score": 0.9469960711104399,
+            "support": 51535.0
+          },
+          "weighted avg": {
+            "precision": 0.9511039080777947,
+            "recall": 0.9510429804986902,
+            "f1-score": 0.9510699788408169,
+            "support": 51535.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            17386,
+            1214
+          ],
+          [
+            1309,
+            31626
+          ]
+        ],
+        "train_seconds": 48.49218679999922,
+        "infer_seconds_mean": 0.8854731200000969,
+        "infer_seconds_std": 0.10925208742633839,
+        "model_size_mb": 275.8617334365845
+      },
+      "LightGBM": {
+        "metrics": {
+          "accuracy": 0.9469486756573202,
+          "precision": 0.9837888059462403,
+          "recall": 0.9323516016395932,
+          "f1": 0.9573798091912452,
+          "macro_f1": 0.9435683794941376,
+          "weighted_f1": 0.9474101733179087
+        },
+        "per_class": {
+          "normal": {
+            "precision": 0.8903651215431552,
+            "recall": 0.9727956989247312,
+            "f1-score": 0.9297569497970299,
+            "support": 18600.0
+          },
+          "attack": {
+            "precision": 0.9837888059462403,
+            "recall": 0.9323516016395932,
+            "f1-score": 0.9573798091912452,
+            "support": 32935.0
+          },
+          "accuracy": 0.9469486756573202,
+          "macro avg": {
+            "precision": 0.9370769637446977,
+            "recall": 0.9525736502821622,
+            "f1-score": 0.9435683794941376,
+            "support": 51535.0
+          },
+          "weighted avg": {
+            "precision": 0.9500703518878841,
+            "recall": 0.9469486756573202,
+            "f1-score": 0.9474101733179087,
+            "support": 51535.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            18094,
+            506
+          ],
+          [
+            2228,
+            30707
+          ]
+        ],
+        "train_seconds": 13.06462719999945,
+        "infer_seconds_mean": 0.6285219199999119,
+        "infer_seconds_std": 0.06791550052121163,
+        "model_size_mb": 1.9705619812011719
+      }
+    },
+    "multiclass": {
+      "RandomForest": {
+        "metrics": {
+          "accuracy": 0.7994760842146115,
+          "precision": 0.6016315239419014,
+          "recall": 0.5725432472540379,
+          "f1": 0.5771642367722307,
+          "macro_f1": 0.5771642367722307,
+          "weighted_f1": 0.8168158562997285
+        },
+        "per_class": {
+          "analysis": {
+            "precision": 0.0745945945945946,
+            "recall": 0.12897196261682242,
+            "f1-score": 0.09452054794520548,
+            "support": 535.0
+          },
+          "backdoor": {
+            "precision": 0.03088630259623993,
+            "recall": 0.148068669527897,
+            "f1-score": 0.051111111111111114,
+            "support": 466.0
+          },
+          "dos": {
+            "precision": 0.31956207395166286,
+            "recall": 0.4729440538061755,
+            "f1-score": 0.3814102564102564,
+            "support": 3271.0
+          },
+          "exploits": {
+            "precision": 0.8206349206349206,
+            "recall": 0.5805727119595733,
+            "f1-score": 0.6800394607037159,
+            "support": 8905.0
+          },
+          "fuzzers": {
+            "precision": 0.7435699588477366,
+            "recall": 0.5962054031759125,
+            "f1-score": 0.6617832207851665,
+            "support": 4849.0
+          },
+          "generic": {
+            "precision": 0.9968839262529213,
+            "recall": 0.9781722439272974,
+            "f1-score": 0.9874394478501307,
+            "support": 11774.0
+          },
+          "normal": {
+            "precision": 0.9176954732510288,
+            "recall": 0.9471505376344086,
+            "f1-score": 0.9321903854803292,
+            "support": 18600.0
+          },
+          "reconnaissance": {
+            "precision": 0.9271610355419043,
+            "recall": 0.7551822730521801,
+            "f1-score": 0.8323813275556431,
+            "support": 2798.0
+          },
+          "shellcode": {
+            "precision": 0.6701754385964912,
+            "recall": 0.6324503311258278,
+            "f1-score": 0.6507666098807495,
+            "support": 302.0
+          },
+          "worms": {
+            "precision": 0.5151515151515151,
+            "recall": 0.4857142857142857,
+            "f1-score": 0.5,
+            "support": 35.0
+          },
+          "accuracy": 0.7994760842146115,
+          "macro avg": {
+            "precision": 0.6016315239419014,
+            "recall": 0.5725432472540379,
+            "f1-score": 0.5771642367722307,
+            "support": 51535.0
+          },
+          "weighted avg": {
+            "precision": 0.8466863370684818,
+            "recall": 0.7994760842146115,
+            "f1-score": 0.8168158562997285,
+            "support": 51535.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            69,
+            154,
+            243,
+            11,
+            2,
+            0,
+            56,
+            0,
+            0,
+            0
+          ],
+          [
+            92,
+            69,
+            269,
+            26,
+            2,
+            0,
+            2,
+            2,
+            4,
+            0
+          ],
+          [
+            302,
+            831,
+            1547,
+            484,
+            21,
+            11,
+            35,
+            17,
+            22,
+            1
+          ],
+          [
+            330,
+            838,
+            2168,
+            5170,
+            72,
+            18,
+            132,
+            129,
+            35,
+            13
+          ],
+          [
+            99,
+            232,
+            240,
+            57,
+            2891,
+            3,
+            1307,
+            5,
+            15,
+            0
+          ],
+          [
+            7,
+            19,
+            56,
+            144,
+            15,
+            11517,
+            8,
+            1,
+            5,
+            2
+          ],
+          [
+            3,
+            0,
+            7,
+            103,
+            847,
+            2,
+            17617,
+            10,
+            11,
+            0
+          ],
+          [
+            23,
+            91,
+            306,
+            251,
+            8,
+            1,
+            3,
+            2113,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            4,
+            38,
+            29,
+            1,
+            37,
+            2,
+            191,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            16,
+            1,
+            0,
+            0,
+            0,
+            0,
+            17
+          ]
+        ],
+        "train_seconds": 76.71388089999982,
+        "infer_seconds_mean": 2.4382862000004026,
+        "infer_seconds_std": 0.4709903550563047,
+        "model_size_mb": 1108.199013710022
+      },
+      "LightGBM": {
+        "metrics": {
+          "accuracy": 0.7771805569030755,
+          "precision": 0.5873173406087829,
+          "recall": 0.6180568701229878,
+          "f1": 0.5847557075305934,
+          "macro_f1": 0.5847557075305934,
+          "weighted_f1": 0.8081896806966756
+        },
+        "per_class": {
+          "analysis": {
+            "precision": 0.048377916903813316,
+            "recall": 0.1588785046728972,
+            "f1-score": 0.07417102966841187,
+            "support": 535.0
+          },
+          "backdoor": {
+            "precision": 0.025906735751295335,
+            "recall": 0.20386266094420602,
+            "f1-score": 0.04597144931042826,
+            "support": 466.0
+          },
+          "dos": {
+            "precision": 0.36710570753123944,
+            "recall": 0.332314276979517,
+            "f1-score": 0.3488446726572529,
+            "support": 3271.0
+          },
+          "exploits": {
+            "precision": 0.8676001417936902,
+            "recall": 0.5496911847276811,
+            "f1-score": 0.6729909947068125,
+            "support": 8905.0
+          },
+          "fuzzers": {
+            "precision": 0.6033492822966507,
+            "recall": 0.7801608579088471,
+            "f1-score": 0.680456875618311,
+            "support": 4849.0
+          },
+          "generic": {
+            "precision": 0.9960375570677922,
+            "recall": 0.9820791574656021,
+            "f1-score": 0.9890091091818842,
+            "support": 11774.0
+          },
+          "normal": {
+            "precision": 0.9668235010254554,
+            "recall": 0.8617204301075269,
+            "f1-score": 0.9112513502757406,
+            "support": 18600.0
+          },
+          "reconnaissance": {
+            "precision": 0.8693798449612403,
+            "recall": 0.8016440314510365,
+            "f1-score": 0.8341390851617702,
+            "support": 2798.0
+          },
+          "shellcode": {
+            "precision": 0.5831381733021077,
+            "recall": 0.8245033112582781,
+            "f1-score": 0.6831275720164609,
+            "support": 302.0
+          },
+          "worms": {
+            "precision": 0.5454545454545454,
+            "recall": 0.6857142857142857,
+            "f1-score": 0.6075949367088608,
+            "support": 35.0
+          },
+          "accuracy": 0.7771805569030755,
+          "macro avg": {
+            "precision": 0.5873173406087829,
+            "recall": 0.6180568701229878,
+            "f1-score": 0.5847557075305934,
+            "support": 51535.0
+          },
+          "weighted avg": {
+            "precision": 0.8582199318111371,
+            "recall": 0.7771805569030755,
+            "f1-score": 0.8081896806966756,
+            "support": 51535.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            85,
+            254,
+            147,
+            5,
+            1,
+            0,
+            43,
+            0,
+            0,
+            0
+          ],
+          [
+            167,
+            95,
+            185,
+            9,
+            2,
+            0,
+            0,
+            4,
+            4,
+            0
+          ],
+          [
+            532,
+            1214,
+            1087,
+            334,
+            24,
+            9,
+            14,
+            24,
+            32,
+            1
+          ],
+          [
+            730,
+            1530,
+            1210,
+            4895,
+            93,
+            28,
+            66,
+            277,
+            61,
+            15
+          ],
+          [
+            131,
+            320,
+            128,
+            34,
+            3783,
+            5,
+            407,
+            8,
+            33,
+            0
+          ],
+          [
+            11,
+            43,
+            31,
+            90,
+            18,
+            11563,
+            5,
+            0,
+            11,
+            2
+          ],
+          [
+            39,
+            0,
+            15,
+            137,
+            2323,
+            2,
+            16028,
+            20,
+            35,
+            1
+          ],
+          [
+            62,
+            211,
+            155,
+            117,
+            4,
+            0,
+            4,
+            2243,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            3,
+            13,
+            22,
+            0,
+            11,
+            3,
+            249,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            8,
+            0,
+            2,
+            0,
+            1,
+            0,
+            24
+          ]
+        ],
+        "train_seconds": 132.43555579999975,
+        "infer_seconds_mean": 12.626478860000315,
+        "infer_seconds_std": 1.7600173794958784,
+        "model_size_mb": 26.320537567138672
+      }
+    }
+  },
+  "runs": [
+    {
+      "run_id": "unsw_nb15_s42_binary_RandomForest",
+      "dataset": "unsw_nb15",
+      "seed": 42,
+      "task": "binary",
+      "model": "RandomForest",
+      "accuracy": 0.951,
+      "precision": 0.963,
+      "recall": 0.9603,
+      "f1": 0.9616,
+      "macro_f1": 0.947,
+      "weighted_f1": 0.9511,
+      "train_seconds": 48.492,
+      "infer_ms_per_sample": 0.0172,
+      "model_size_mb": 275.862,
+      "n_train": 206138,
+      "n_test": 51535,
+      "config_hash": "9c3a04a1990f01e22fe998e12121534479e07492802640a2e7a10e6ca5abfe49",
+      "git_commit": "29acd5c",
+      "timestamp": "2026-11-24T13:45:49Z"
+    },
+    {
+      "run_id": "unsw_nb15_s42_binary_LightGBM",
+      "dataset": "unsw_nb15",
+      "seed": 42,
+      "task": "binary",
+      "model": "LightGBM",
+      "accuracy": 0.9469,
+      "precision": 0.9838,
+      "recall": 0.9324,
+      "f1": 0.9574,
+      "macro_f1": 0.9436,
+      "weighted_f1": 0.9474,
+      "train_seconds": 13.065,
+      "infer_ms_per_sample": 0.0122,
+      "model_size_mb": 1.971,
+      "n_train": 206138,
+      "n_test": 51535,
+      "config_hash": "9c3a04a1990f01e22fe998e12121534479e07492802640a2e7a10e6ca5abfe49",
+      "git_commit": "29acd5c",
+      "timestamp": "2026-11-24T13:45:49Z"
+    },
+    {
+      "run_id": "unsw_nb15_s42_multiclass_RandomForest",
+      "dataset": "unsw_nb15",
+      "seed": 42,
+      "task": "multiclass",
+      "model": "RandomForest",
+      "accuracy": 0.7995,
+      "precision": 0.6016,
+      "recall": 0.5725,
+      "f1": 0.5772,
+      "macro_f1": 0.5772,
+      "weighted_f1": 0.8168,
+      "train_seconds": 76.714,
+      "infer_ms_per_sample": 0.0473,
+      "model_size_mb": 1108.199,
+      "n_train": 206138,
+      "n_test": 51535,
+      "config_hash": "9c3a04a1990f01e22fe998e12121534479e07492802640a2e7a10e6ca5abfe49",
+      "git_commit": "29acd5c",
+      "timestamp": "2026-11-24T13:45:49Z"
+    },
+    {
+      "run_id": "unsw_nb15_s42_multiclass_LightGBM",
+      "dataset": "unsw_nb15",
+      "seed": 42,
+      "task": "multiclass",
+      "model": "LightGBM",
+      "accuracy": 0.7772,
+      "precision": 0.5873,
+      "recall": 0.6181,
+      "f1": 0.5848,
+      "macro_f1": 0.5848,
+      "weighted_f1": 0.8082,
+      "train_seconds": 132.436,
+      "infer_ms_per_sample": 0.245,
+      "model_size_mb": 26.321,
+      "n_train": 206138,
+      "n_test": 51535,
+      "config_hash": "9c3a04a1990f01e22fe998e12121534479e07492802640a2e7a10e6ca5abfe49",
+      "git_commit": "29acd5c",
+      "timestamp": "2026-11-24T13:45:49Z"
+    }
+  ],
+  "xai": {
+    "binary": {
+      "task": "binary",
+      "n_alerts_available": 31213,
+      "n_alerts_explained": 200,
+      "shap_seconds_mean": 0.8257621666668152,
+      "shap_seconds_std": 0.09456196353681895,
+      "ms_per_alert": 4.128810833334076,
+      "feature_perturbation": "tree_path_dependent",
+      "top_features": [
+        {
+          "feature": "sttl",
+          "mean_abs_shap": 3.1872357695222964
+        },
+        {
+          "feature": "service",
+          "mean_abs_shap": 1.2822470745205095
+        },
+        {
+          "feature": "proto",
+          "mean_abs_shap": 1.0700411487734234
+        },
+        {
+          "feature": "ct_dst_sport_ltm",
+          "mean_abs_shap": 0.8399719779947684
+        },
+        {
+          "feature": "ct_dst_src_ltm",
+          "mean_abs_shap": 0.43631326220621786
+        },
+        {
+          "feature": "ct_state_ttl",
+          "mean_abs_shap": 0.42755486823482974
+        },
+        {
+          "feature": "sbytes",
+          "mean_abs_shap": 0.3771701583933812
+        },
+        {
+          "feature": "dbytes",
+          "mean_abs_shap": 0.2322912480908013
+        },
+        {
+          "feature": "synack",
+          "mean_abs_shap": 0.20587859202306938
+        },
+        {
+          "feature": "smean",
+          "mean_abs_shap": 0.2013103626730108
+        }
+      ],
+      "top_features_file": "D:\\XAI-PQC-IoT-IDS\\results\\unsw_nb15\\seed_42\\xai_global_importance_binary.csv",
+      "per_class_top5": null
+    },
+    "multiclass": {
+      "task": "multiclass",
+      "n_alerts_available": 34957,
+      "n_alerts_explained": 200,
+      "shap_seconds_mean": 8.194298233333635,
+      "shap_seconds_std": 0.3439619657048238,
+      "ms_per_alert": 40.97149116666818,
+      "feature_perturbation": "tree_path_dependent",
+      "top_features": [
+        {
+          "feature": "service",
+          "mean_abs_shap": 0.7080165427382249
+        },
+        {
+          "feature": "smean",
+          "mean_abs_shap": 0.5176335873058314
+        },
+        {
+          "feature": "sbytes",
+          "mean_abs_shap": 0.5029386998033689
+        },
+        {
+          "feature": "sttl",
+          "mean_abs_shap": 0.4545759100927302
+        },
+        {
+          "feature": "proto",
+          "mean_abs_shap": 0.3726054599563806
+        },
+        {
+          "feature": "ct_srv_dst",
+          "mean_abs_shap": 0.2759904428374471
+        },
+        {
+          "feature": "ct_dst_src_ltm",
+          "mean_abs_shap": 0.24786439336985652
+        },
+        {
+          "feature": "ct_srv_src",
+          "mean_abs_shap": 0.2272340011836566
+        },
+        {
+          "feature": "ct_src_dport_ltm",
+          "mean_abs_shap": 0.20329098493909584
+        },
+        {
+          "feature": "dbytes",
+          "mean_abs_shap": 0.18011725532745054
+        }
+      ],
+      "top_features_file": "D:\\XAI-PQC-IoT-IDS\\results\\unsw_nb15\\seed_42\\xai_global_importance_multiclass.csv",
+      "per_class_top5": {
+        "analysis": [
+          {
+            "feature": "smean",
+            "mean_abs_shap": 0.9563678970456
+          },
+          {
+            "feature": "service",
+            "mean_abs_shap": 0.4758353219176555
+          },
+          {
+            "feature": "dload",
+            "mean_abs_shap": 0.4057075824278185
+          },
+          {
+            "feature": "sbytes",
+            "mean_abs_shap": 0.3373214140034066
+          },
+          {
+            "feature": "dtcpb",
+            "mean_abs_shap": 0.291389977571032
+          }
+        ],
+        "backdoor": [
+          {
+            "feature": "sbytes",
+            "mean_abs_shap": 0.9161011533679151
+          },
+          {
+            "feature": "service",
+            "mean_abs_shap": 0.860217156575549
+          },
+          {
+            "feature": "sloss",
+            "mean_abs_shap": 0.45883109289532165
+          },
+          {
+            "feature": "sjit",
+            "mean_abs_shap": 0.3475296263605873
+          },
+          {
+            "feature": "proto",
+            "mean_abs_shap": 0.3372763011516344
+          }
+        ],
+        "dos": [
+          {
+            "feature": "smean",
+            "mean_abs_shap": 0.489475137602739
+          },
+          {
+            "feature": "ct_srv_dst",
+            "mean_abs_shap": 0.48490249285388876
+          },
+          {
+            "feature": "ct_srv_src",
+            "mean_abs_shap": 0.28609596849588526
+          },
+          {
+            "feature": "sttl",
+            "mean_abs_shap": 0.23760876125297187
+          },
+          {
+            "feature": "proto",
+            "mean_abs_shap": 0.22478884852362857
+          }
+        ],
+        "exploits": [
+          {
+            "feature": "smean",
+            "mean_abs_shap": 0.6642162396549008
+          },
+          {
+            "feature": "ct_srv_dst",
+            "mean_abs_shap": 0.46386289797053065
+          },
+          {
+            "feature": "dbytes",
+            "mean_abs_shap": 0.2906349087199913
+          },
+          {
+            "feature": "sttl",
+            "mean_abs_shap": 0.2564058038539472
+          },
+          {
+            "feature": "sbytes",
+            "mean_abs_shap": 0.21554440165803185
+          }
+        ],
+        "fuzzers": [
+          {
+            "feature": "sttl",
+            "mean_abs_shap": 0.6340334675655834
+          },
+          {
+            "feature": "service",
+            "mean_abs_shap": 0.5811945770400496
+          },
+          {
+            "feature": "sbytes",
+            "mean_abs_shap": 0.5717445611619904
+          },
+          {
+            "feature": "smean",
+            "mean_abs_shap": 0.4521217280204709
+          },
+          {
+            "feature": "synack",
+            "mean_abs_shap": 0.34299261894540195
+          }
+        ],
+        "generic": [
+          {
+            "feature": "service",
+            "mean_abs_shap": 3.1803894737743748
+          },
+          {
+            "feature": "sbytes",
+            "mean_abs_shap": 1.0060627615023368
+          },
+          {
+            "feature": "smean",
+            "mean_abs_shap": 0.6805596127392838
+          },
+          {
+            "feature": "ct_srv_dst",
+            "mean_abs_shap": 0.3743352358504222
+          },
+          {
+            "feature": "sttl",
+            "mean_abs_shap": 0.25599476206590693
+          }
+        ],
+        "normal": [
+          {
+            "feature": "sttl",
+            "mean_abs_shap": 2.2028601286113583
+          },
+          {
+            "feature": "proto",
+            "mean_abs_shap": 1.5862667630545724
+          },
+          {
+            "feature": "ct_dst_sport_ltm",
+            "mean_abs_shap": 0.6898196815391693
+          },
+          {
+            "feature": "service",
+            "mean_abs_shap": 0.5620694859045873
+          },
+          {
+            "feature": "ct_dst_src_ltm",
+            "mean_abs_shap": 0.44328204740885657
+          }
+        ],
+        "reconnaissance": [
+          {
+            "feature": "smean",
+            "mean_abs_shap": 0.7191452538729713
+          },
+          {
+            "feature": "sloss",
+            "mean_abs_shap": 0.5719874257689205
+          },
+          {
+            "feature": "ct_srv_src",
+            "mean_abs_shap": 0.5588351529267004
+          },
+          {
+            "feature": "ct_src_dport_ltm",
+            "mean_abs_shap": 0.4188587970794344
+          },
+          {
+            "feature": "sbytes",
+            "mean_abs_shap": 0.37808238818727935
+          }
+        ],
+        "shellcode": [
+          {
+            "feature": "ct_src_dport_ltm",
+            "mean_abs_shap": 0.917372882510182
+          },
+          {
+            "feature": "service",
+            "mean_abs_shap": 0.8290501225222023
+          },
+          {
+            "feature": "sbytes",
+            "mean_abs_shap": 0.7215084224913477
+          },
+          {
+            "feature": "sttl",
+            "mean_abs_shap": 0.6118480600581857
+          },
+          {
+            "feature": "proto",
+            "mean_abs_shap": 0.5976425145793605
+          }
+        ],
+        "worms": [
+          {
+            "feature": "ct_dst_src_ltm",
+            "mean_abs_shap": 0.404303481130971
+          },
+          {
+            "feature": "sbytes",
+            "mean_abs_shap": 0.38676513261655665
+          },
+          {
+            "feature": "ct_srv_src",
+            "mean_abs_shap": 0.38477705730609235
+          },
+          {
+            "feature": "dtcpb",
+            "mean_abs_shap": 0.21898764889576747
+          },
+          {
+            "feature": "ct_srv_dst",
+            "mean_abs_shap": 0.19363597002248858
+          }
+        ]
+      }
+    }
+  },
+  "elapsed_seconds": 423.7
+}

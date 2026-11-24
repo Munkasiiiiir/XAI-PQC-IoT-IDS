@@ -1,0 +1,48 @@
+{
+  "comparison_family": "model (RandomForest vs LightGBM) within each dataset and task",
+  "created_utc": "2026-11-24T13:18:43Z",
+  "estimators": {
+    "lgbm_binary": 300,
+    "lgbm_multi": 400,
+    "rf_binary": 200,
+    "rf_multi": 250
+  },
+  "falsifiers": [
+    "H1 falsified if LightGBM macro-F1 is lower than RF by more than 1 sd on 2+ datasets.",
+    "H2 falsified if LightGBM multi-class model is not smaller at equal macro-F1.",
+    "H3 falsified if ms/alert does not scale with class count.",
+    "H4 falsified if ML-KEM or IDS inference exceeds ML-DSA signing cost."
+  ],
+  "frozen_hyperparameters": true,
+  "hypotheses": [
+    "H1: LightGBM matches or exceeds RandomForest macro-F1 on every dataset.",
+    "H2: LightGBM's multi-class model size is much smaller than RandomForest at comparable macro-F1.",
+    "H3: Alert-level TreeSHAP cost is driven by class count, not dataset size.",
+    "H4: ML-DSA signing dominates the per-alert crypto budget versus ML-KEM and IDS inference."
+  ],
+  "lgbm_common": {
+    "class_weight": "balanced",
+    "colsample_bytree": 0.8,
+    "deterministic": true,
+    "force_row_wise": true,
+    "learning_rate": 0.05,
+    "num_leaves": 63,
+    "subsample": 0.8,
+    "verbosity": -1
+  },
+  "multiple_comparison_correction": "none at n=3 seeds; report mean +/- sd and range only, no p-values",
+  "n_alerts": 200,
+  "plan_sha256": "590b8f16af04345dcc9dcdd9eebe98d8f7bf73bbef227509742c2fe87fe5c11e",
+  "primary_metric": {
+    "binary": "f1 (positive class = attack)",
+    "multiclass": "macro_f1"
+  },
+  "seed_semantics": "Each master seed drives BOTH the stratified 80/20 split and every model random_state.",
+  "seeds": [
+    42,
+    123,
+    2024
+  ],
+  "test_size": 0.2,
+  "threads": 8
+}
