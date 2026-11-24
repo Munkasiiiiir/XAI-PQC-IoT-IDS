@@ -1,0 +1,8 @@
+{
+  "environment": "host_pc_software_only",
+  "hardware_claims": "none",
+  "library": "pqcrypto + cryptography",
+  "iterations": 100,
+  "warmup": 10,
+  "note": "Timings are for local software evaluation only; not Raspberry Pi/ESP32 results."
+}

@@ -1,0 +1,144 @@
+========================================================================
+ToN-IoT Network Train/Test — Dataset Audit Report
+========================================================================
+File: /home/munkasiiiiir/Documents/Research with Ahasan Sir/datasets/ToN_IoT/train_test_network.csv
+Shape: 211,043 rows × 44 columns
+
+--- Columns ---
+src_ip, src_port, dst_ip, dst_port, proto, service, duration, src_bytes, dst_bytes, conn_state, missed_bytes, src_pkts, src_ip_bytes, dst_pkts, dst_ip_bytes, dns_query, dns_qclass, dns_qtype, dns_rcode, dns_AA, dns_RD, dns_RA, dns_rejected, ssl_version, ssl_cipher, ssl_resumed, ssl_established, ssl_subject, ssl_issuer, http_trans_depth, http_method, http_uri, http_version, http_request_body_len, http_response_body_len, http_status_code, http_user_agent, http_orig_mime_types, http_resp_mime_types, weird_name, weird_addl, weird_notice, label, type
+
+--- dtypes ---
+src_ip                     object
+src_port                    int64
+dst_ip                     object
+dst_port                    int64
+proto                      object
+service                    object
+duration                  float64
+src_bytes                   int64
+dst_bytes                   int64
+conn_state                 object
+missed_bytes                int64
+src_pkts                    int64
+src_ip_bytes                int64
+dst_pkts                    int64
+dst_ip_bytes                int64
+dns_query                  object
+dns_qclass                  int64
+dns_qtype                   int64
+dns_rcode                   int64
+dns_AA                     object
+dns_RD                     object
+dns_RA                     object
+dns_rejected               object
+ssl_version                object
+ssl_cipher                 object
+ssl_resumed                object
+ssl_established            object
+ssl_subject                object
+ssl_issuer                 object
+http_trans_depth           object
+http_method                object
+http_uri                   object
+http_version               object
+http_request_body_len       int64
+http_response_body_len      int64
+http_status_code            int64
+http_user_agent            object
+http_orig_mime_types       object
+http_resp_mime_types       object
+weird_name                 object
+weird_addl                 object
+weird_notice               object
+label                       int64
+type                       object
+
+--- Label distribution (binary) ---
+label
+1    161043
+0     50000
+Attack ratio: 0.7631
+
+--- Attack type distribution (multi-class) ---
+type
+normal        50000
+backdoor      20000
+ddos          20000
+dos           20000
+injection     20000
+password      20000
+scanning      20000
+ransomware    20000
+xss           20000
+mitm           1043
+
+Class imbalance (max/min): 47.94
+
+--- Missing / placeholder analysis ---
+                      na  dash_-  empty  dash_pct
+ssl_subject            0  211032      0     99.99
+ssl_issuer             0  211032      0     99.99
+http_orig_mime_types   0  211027      0     99.99
+weird_addl             0  210886      0     99.93
+http_resp_mime_types   0  210839      0     99.90
+http_uri               0  210756      0     99.86
+http_user_agent        0  210756      0     99.86
+http_version           0  210745      0     99.86
+http_method            0  210756      0     99.86
+http_trans_depth       0  210740      0     99.86
+weird_name             0  210687      0     99.83
+weird_notice           0  210687      0     99.83
+ssl_version            0  210642      0     99.81
+ssl_cipher             0  210642      0     99.81
+ssl_resumed            0  210642      0     99.81
+ssl_established        0  210642      0     99.81
+dns_query              0  176198      0     83.49
+dns_AA                 0  176030      0     83.41
+dns_RD                 0  176030      0     83.41
+dns_rejected           0  176030      0     83.41
+dns_RA                 0  176030      0     83.41
+service                0  132032      0     62.56
+
+--- Potential leakage / high-cardinality identifier features ---
+src_ip: nunique=51
+dst_ip: nunique=753
+src_port: nunique=26,628
+dst_port: nunique=2,039
+dns_query: nunique=726
+http_uri: nunique=86
+ssl_subject: nunique=6
+ssl_issuer: nunique=5
+http_user_agent: nunique=35
+
+--- Numeric columns (17) ---
+src_port, dst_port, duration, src_bytes, dst_bytes, missed_bytes, src_pkts, src_ip_bytes, dst_pkts, dst_ip_bytes, dns_qclass, dns_qtype, dns_rcode, http_request_body_len, http_response_body_len, http_status_code, label
+
+--- Object/categorical columns (27) ---
+src_ip, dst_ip, proto, service, conn_state, dns_query, dns_AA, dns_RD, dns_RA, dns_rejected, ssl_version, ssl_cipher, ssl_resumed, ssl_established, ssl_subject, ssl_issuer, http_trans_depth, http_method, http_uri, http_version, http_user_agent, http_orig_mime_types, http_resp_mime_types, weird_name, weird_addl, weird_notice, type
+
+--- Key numeric feature summary ---
+                 count           mean           std  min       50%           max
+duration      211043.0       7.700887  5.641419e+02  0.0   0.00017  9.351693e+04
+src_bytes     211043.0  258113.564274  1.709490e+07  0.0   0.00000  3.890855e+09
+dst_bytes     211043.0  258804.571575  1.802563e+07  0.0   0.00000  3.913853e+09
+src_pkts      211043.0       9.595220  9.177882e+01  0.0   1.00000  2.462300e+04
+dst_pkts      211043.0       3.846861  3.307058e+02  0.0   1.00000  1.219420e+05
+src_ip_bytes  211043.0     776.082206  2.229703e+04  0.0  82.00000  6.522626e+06
+dst_ip_bytes  211043.0    1584.686628  1.901795e+05  0.0  40.00000  8.639552e+07
+missed_bytes  211043.0   34432.344295  5.261621e+06  0.0   0.00000  1.854527e+09
+
+--- Exact duplicate rows: 20,569 (9.75%) ---
+
+--- Recommended feature policy for research ---
+DROP (leakage / identifiers): src_ip, dst_ip, src_port, dst_port
+CAUTION (high cardinality / sparse text): dns_query, http_uri, http_user_agent, ssl_subject, ssl_issuer
+KEEP: connection/statistical/DNS flags/SSL flags/HTTP numeric/weird fields + encoded categoricals
+TARGETS: label (binary), type (multi-class)
+
+--- Immediate next steps ---
+1. Preprocess: replace '-' , encode categoricals, drop leakage cols
+2. Stratified train/test split
+3. Train RF + LightGBM (binary then multi-class)
+4. TreeSHAP on alerts; measure explanation time
+5. Software PQC microbenchmarks (ML-KEM/ML-DSA)
+========================================================================

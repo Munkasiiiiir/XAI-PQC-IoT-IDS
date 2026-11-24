@@ -1,0 +1,3 @@
+task,model,n_alerts_explained,shap_seconds_mean,shap_seconds_std,ms_per_alert,feature_perturbation
+binary,LightGBM,200,0.4059,0.016,2.0295,tree_path_dependent
+multiclass,LightGBM,200,3.0587,0.0942,15.2936,tree_path_dependent

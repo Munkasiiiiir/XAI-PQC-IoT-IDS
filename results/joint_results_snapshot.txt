@@ -1,0 +1,46 @@
+========================================================================
+JOINT RESULTS SNAPSHOT (Software-only pipeline)
+========================================================================
+
+1) IDS detection (ToN-IoT Network, leakage features removed)
+      task        model  train_seconds  infer_seconds_mean  infer_seconds_std  infer_ms_per_sample  model_size_mb  accuracy  precision  recall     f1  macro_f1  weighted_f1
+    binary RandomForest          9.790              0.1590             0.0071               0.0042         16.006    0.9976     0.9982  0.9987 0.9984    0.9964       0.9976
+    binary     LightGBM         17.895              0.1815             0.0152               0.0048          1.985    0.9975     0.9990  0.9978 0.9984    0.9964       0.9975
+multiclass RandomForest         13.030              0.5204             0.0153               0.0137        163.121    0.9768     0.9495  0.9547 0.9519    0.9519       0.9768
+multiclass     LightGBM         53.574              8.2933             1.0840               0.2177         25.459    0.9797     0.9464  0.9636 0.9539    0.9539       0.9800
+
+2) TreeSHAP overhead (alert-level, 200 alerts)
+      task    model  n_alerts_explained  shap_seconds_mean  shap_seconds_std  ms_per_alert feature_perturbation
+    binary LightGBM                 200             0.4059            0.0160        2.0295  tree_path_dependent
+multiclass LightGBM                 200             3.0587            0.0942       15.2936  tree_path_dependent
+
+3) Top-10 global features (multi-class LightGBM)
+     feature  mean_abs_shap
+src_ip_bytes       1.631369
+  conn_state       1.154607
+    duration       0.946160
+dst_ip_bytes       0.546807
+   src_bytes       0.527567
+    src_pkts       0.354230
+   dst_bytes       0.332915
+    dst_pkts       0.241374
+       proto       0.231422
+      dns_RA       0.118013
+
+4) PQC software microbenchmarks (host PC; NOT edge hardware)
+   family   algorithm  public_key_bytes  ciphertext_bytes  signature_bytes  keygen_ms  encaps_or_sign_ms  decaps_or_verify_ms
+   ML-KEM  ml_kem_512               800             768.0              NaN     0.0382             0.0484               0.0592
+   ML-KEM  ml_kem_768              1184            1088.0              NaN     0.0609             0.0727               0.0898
+   ML-KEM ml_kem_1024              1568            1568.0              NaN     0.0917             0.1054               0.1262
+   ML-DSA   ml_dsa_44              1312               NaN           2420.0     0.1281             6.8974               0.1286
+   ML-DSA   ml_dsa_65              1952               NaN           3309.0     0.2252             9.6713               0.1980
+   ML-DSA   ml_dsa_87              2592               NaN           4627.0     0.3252            12.9136               0.3092
+Classical   ECDH_P256                65               NaN              NaN     0.0153             0.0469                  NaN
+Classical  ECDSA_P256                65               NaN             72.0     0.0146             0.0236               0.0628
+
+Notes:
+- Hardware integration skipped per supervisor guidance.
+- PQC timings are software-only on the local machine.
+- XAI uses tree_path_dependent TreeSHAP on predicted alerts only.
+- Next: deeper analysis figures, optional second dataset, paper draft.
+========================================================================

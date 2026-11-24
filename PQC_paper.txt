@@ -1,0 +1,564 @@
+IEEE TRANSACTIONS ON CONSUMER ELECTRONICS, VOL. 71, NO. 2, MAY 2025                                                                                         4925
+
+
+
+
+             Post-Quantum Cryptography (PQC) for
+          IoT-Consumer Electronics Devices Integrated
+                     With Deep Learning
+                                      Ankita Sharma            and Shalli Rani , Senior Member, IEEE
+
+
+
+   Abstract—The emergence of quantum computing seriously                         is the network-based intrusion detection system, an attack
+threatens the security of legacy cryptographic protocols in                      detection method that continuously scans network traffic
+consumer electronics devices based on the Internet of Things                     for suspicious or hostile activities, providing much-needed
+(IoT). These are essential components of mission-critical infras-
+tructures, such as industrial control systems, smart grids, and                  protection [2]. Since then, several IDS software have been
+healthcare. In particular, this work examines how to strengthen                  created and enhanced to satisfy network security standards.
+the resistance of the IoT to classical and quantum-based cyber-                  But because technology has advanced so quickly in the last ten
+attacks by combining deep learning methods with post-quantum                     years, both networks’ sizes and the number of programs they
+cryptography (PQC). To protect key exchange, encryption,                         can support have grown significantly. As a result, it is now
+and authentication processes in IoT-consumer devices, we will
+continue to use quantum-resistant cryptographic algorithms,                      possible to generate and exchange enormous volumes of data
+including lattice-based, hash-based, and code-based cryptog-                     that are pertinent to the operation of several network nodes [3].
+raphy. To provide real-time anomaly detection and response                       The issue of privacy for such data and network nodes has
+capabilities, we suggest a hybrid security framework combining                   become quite difficult due to the proliferation of innumerable
+PQC with deep learning-based intrusion detection systems. Our                    risks, whether they are completely new or variations on
+methodology ensures secure communications and data exchanges
+linked to quantum attacks in the future within IoT systems                       previously recognized concerns. A shift to quantum computing
+while leveraging continuous learning over time to allow Intrusion                alters the paradigm of computational capacity, enabling it to
+Detection System (IDS) models to adapt to new attack vectors.                    perform tasks that were previously unimaginable for traditional
+We suggest optimized algorithms for PQC solutions that are                       computers. Traditional cryptography methods such as Rivest-
+lightweight and suitable for deployment in edge computing                        Shamir-Adleman (RSA) and Elliptic Curve Cryptography
+nodes and Internet of Things devices, considering the resource-
+constrained IoT situations where PQC implementation would                        (ECC) which are essential to protecting IoT systems, are in
+be difficult. Through comparative studies and simulations, we                    grave danger from quantum algorithms, most notably Shor’s
+demonstrate how our integrated PQC-deep learning framework                       algorithm [4]. However, the need to protect these systems
+offers an improved IoT security solution that could safeguard                    from quantum threats is more urgent than ever because IoT
+vital systems in a world powered by quantum technology.                          is a component of the backbone infrastructure in many vital
+The results shows the key generation time which is 12.5ms,
+encryption/decryption time 25.3ms, latency 18.7ms, throughput                    industries, including intelligent grids, healthcare, and indus-
+5000 operations/sec and energy consumption 2.4mJ.                                trial control systems [5]. Post-quantum cryptography, which
+                                                                                 entails creating cryptographic algorithms immune to quantum
+  Index Terms—Post-quantum cryptography, deep learning,
+hybrid cryptography, intrusion detection systems, IoT consumer                   attacks, is one of the most promising remedies. Lattice-based,
+devices.                                                                         code-based, and hash-based cryptography are examples of
+                                                                                 algorithms that take advantage of mathematical issues that are
+                                                                                 fundamentally challenging for a quantum computer to resolve.
+                                                                                 By utilising PQC to safeguard communication, authentication,
+                          I. I NTRODUCTION                                       and data integrity in the future following the advent of potent
+      NE OF the most important fields of research nowadays
+O     is data security. As a result, for the past ten years, there
+has been interest in improving current communication and
+                                                                                 quantum computers, might ensure long-term security for a IoT-
+                                                                                 based consumer electronics [6]. The rapid advancements in
+                                                                                 quantum computing by organizations such as Google, IBM,
+Internet technology. To guarantee the security of the network                    and China’s Quantum Research Labs, which could break
+and all connected resources within the cyber environment, it                     conventional cryptographic systems (RSA, ECC) much sooner
+makes use of instruments such as intrusion-detection systems,                    than expected. IoT devices’ reliance on lightweight encryption,
+firewalls, and antivirus software, among others [1]. The first                   making them highly vulnerable to quantum-based attacks
+                                                                                 due to their limited computational resources. The risk of a
+  Received 23 December 2024; revised 25 February 2025 and 24 April 2025;
+accepted 10 May 2025. Date of publication 14 May 2025; date of current           “harvest now, decrypt later” attack, where adversaries collect
+version 14 August 2025. (Corresponding author: Shalli Rani.)                     encrypted IoT communications today, intending to decrypt
+  The authors are with the Chitkara University Institute of Engineering          them once quantum computers become powerful enough.
+and Technology, Chitkara University, Punjab 140401, India (e-mail:
+ankitaanand2719@gmail.com; shalli.rani@chitkara.edu.in).                         Critical infrastructure at risk, such as smart grids, healthcare
+  Digital Object Identifier 10.1109/TCE.2025.3569904                             IoT devices, and industrial control systems, which rely on
+               1558-4127 
+                         c 2025 IEEE. All rights reserved, including rights for text and data mining, and training of artificial intelligence
+                      and similar technologies. Personal use is permitted, but republication/redistribution requires IEEE permission.
+                                      See https://www.ieee.org/publications/rights/index.html for more information.
+  Authorized licensed use limited to: Daffodil International University. Downloaded on November 04,2026 at 03:31:11 UTC from IEEE Xplore. Restrictions apply.
+4926                                                                          IEEE TRANSACTIONS ON CONSUMER ELECTRONICS, VOL. 71, NO. 2, MAY 2025
+
+
+                             TABLE I
+         T HREAT M ODELS A LONG W ITH C OUNTERMEASURES                           computational models. A quantum adversary using Shor’s
+                                                                                 algorithm to factor large numbers, rendering RSA encryption
+                                                                                 vulnerable [8]. Classical cryptosystems rely on problems like
+                                                                                 integer factorization (RSA) and discrete logarithms (ECC),
+                                                                                 which are hard for classical computers but can be effi-
+                                                                                 ciently solved using quantum algorithms. Shor’s Algorithm for
+                                                                                 factoring RSA keys as shown in (1):
+                                                                                                                   N = pq                                       (1)
+                                                                                 A classical adversary requires exponential time O(2n ) to factor
+                                                                                 N, while a quantum adversary running Shor’s Algorithm can
+                                                                                 solve it in polynomial time as shown in (2):
+                                                                                                                   
+                                                                                                          O (logN)3                           (2)
+
+                                                                                 This means RSA encryption is vulnerable to quantum com-
+                                                                                 puters.
+
+                                                                                 B. Hybrid Cryptography
+                                                                                    A cryptographic approach that combines classical and post-
+                                                                                 quantum encryption to ensure security both before and after
+legacy encryption schemes that could be rendered obsolete by                     quantum computers become practical. A system implement-
+quantum attacks. Thus, combining PQC with deep learning-                         ing ECDH (Elliptic Curve Diffie-Hellman) alongside a PQC
+based intrusion detection systems can provide a complete                         scheme (e.g., Kyber) to protect against both classical and
+security framework that includes threat detection and encryp-                    quantum threats [9]. Hybrid key exchange formula as shown
+tion. The study examines the opportunities and difficulties in                   in (3):
+protecting these vital infrastructures while integrating PQC
+and deep learning in IoT [7]. Following are the contributions                                       Khybrid = H(KECDHKPQC)                                      (3)
+in the paper.                                                                    where: || denotes concatenation of classical and PQC-derived
+   • We proposed a hybrid security framework that integrates
+                                                                                 keys. H() is a cryptographic hash function ensuring security
+     PQC with DL-IDS to safeguard IoT-consumer devices                           against quantum and classical attacks. This ensures that even if
+     from quantum and classical cyber threats. This integration                  ECDH is broken by quantum computers, PQC remains secure.
+     addresses key challenges such as key exchange, encryp-
+     tion, and anomaly detection while ensuring resource
+     efficiency in constrained IoT environments.                                 C. Post-Quantum Cryptography (PQC)
+   • The study emphasizes the optimization of PQC                                   Cryptographic algorithms designed to withstand attacks
+     algorithms lattice-based, hash-based, and code-based                        from both classical and quantum computers. Lattice-based
+     cryptographic methods to ensure their applicability in                      cryptosystems such as CRYSTALS-Kyber and CRYSTALS-
+     edge computing and IoT devices with limited computa-                        Dilithium, recommended by NIST’s PQC standardization
+     tional resources.                                                           project.
+   • The research incorporates advanced deep learning mod-
+     els, such as CNNs and VAEs, to provide real-time                            D. Quantum Key Distribution (QKD)
+     anomaly detection in IoT systems. These models leverage                       A secure communication method that uses quan-
+     continuous learning techniques such as elastic weight                       tum mechanics principles to distribute encryption keys
+     consolidation to adapt to evolving attack vectors.                          securely [10]. The BB84 protocol, which ensures secure key
+   • We conducted comparative studies and simulations to
+                                                                                 exchange by detecting any eavesdropping attempts.
+     demonstrate the efficacy of the proposed hybrid frame-
+     work. The results highlighted improvements in security
+     metrics such as reconstruction accuracy (97.45%) and                                          III. P ROPOSED M ETHODOLOGY
+     detection precision (93.45%), along with maintaining                           To successfully integrate PQC with deep learning-based
+     computational efficiency for IoT applications.                              intrusion detection systems for IoT, the system must be
+   Table I shows the work done by the authors in previous                        properly structured to ensure security and computational effi-
+studies.                                                                         ciency. The steps required to combine deep learning-based
+                                                                                 anomaly detection in IoT with post-quantum cryptography are
+                                                                                 shown in Figure 1. PQC protocols, which are in charge of
+                         II. P RELIMINARIES
+                                                                                 protecting IoT communication channels, are the first step in
+A. Quantum Adversaries                                                           integrating PQC into deep learning-based IDS for IoT. To
+  Attackers leveraging quantum computing capabilities to                         perform key exchange, encryption, and authentication, this
+break cryptographic protocols that are secure under classical                    stage takes into account the selection and optimization of
+  Authorized licensed use limited to: Daffodil International University. Downloaded on November 04,2026 at 03:31:11 UTC from IEEE Xplore. Restrictions apply.
+SHARMA AND RANI: PQC FOR IoT-CONSUMER ELECTRONICS DEVICES INTEGRATED WITH DEEP LEARNING                                                                      4927
+
+
+                                                                                  Algorithm 1 Secure Communication and Authentication
+                                                                                  Framework
+                                                                                  Require: Message M, Device keys (public/private), IoT
+                                                                                      network data
+                                                                                  Ensure: Secure communication and authenticated message
+                                                                                      exchange
+                                                                                   1: (pkA , skA ) ← Kyber.KeyGen()
+                                                                                   2: (pkB , skB ) ← Kyber.KeyGen()
+                                                                                   3: (CA , KA ) ← Kyber.Encapsulate(pkB )
+                                                                                   4: KB ← Kyber.Decapsulate(CA , skB )
+Fig. 1.   Workflow of DL-integrated PQC for IoT.                                   5: (pkC , skC ) ← CodeBased.KeyGen()
+                                                                                   6: Cenc ← CodeBased.Encrypt(M, pkC )
+                                                                                   7: Mdec ← CodeBased.Decrypt(Cenc , skC )
+                                                                                   8: (pkD , skD ) ← SPHINCS+.KeyGen()
+                                                                                   9: σ ← SPHINCS+.Sign(M, skD )
+                                                                                  10: Valid ← SPHINCS+.Verify(σ, M, pkD )
+                                                                                  11: Kclassical ← DH.KeyExchange()
+                                                                                  12: Kpq ← Kyber.Encapsulate(pkB )
+                                                                                  13: Khybrid ← Concat(Kclassical , Kpq )
+                                                                                  14: σclassical ← RSA.Sign(M)
+                                                                                  15: σpq ← SPHINCS+.Sign(M, skD )
+                                                                                  16: σhybrid ← (σclassical , σpq )
+                                                                                  17: if Device ∈ {IoT Node, Edge Node} then
+                                                                                  18:     Optimize()
+Fig. 2.   Data distribution of BoT-IoT and UNSW-NB15 datasets.
+                                                                                  19:     OffloadToHardware()
+                                                                                  20: end if
+                                                                                  21: Send(Cenc , σhybrid )
+quantum-resistant algorithms such as lattice, hash, and code-                     22: if Valid = True then
+based cryptographic systems. More specifically, the algorithms                    23:     AuthenticateCommunication()
+used are selected to withstand quantum attacks and are appro-                     24: else
+priately constructed to accommodate the computing limitations                     25:     RejectCommunication()
+that the IoT environment targets. Data gathering from the                         26: end if
+IoT environment, such as sensor data, network logs, and                           27: = 0
+system metrics, comes next. To prepare it for use in model
+training, these data are preprocessed using normalization,
+noise reduction, and feature extraction.Models, specifically                      A. Implementation of Cryptographic Framework
+transformer-based networks autoencoders, are trained on these
+                                                                                     This study implements a cryptographic architecture that
+preprocessed data to recognize typical patterns of behavior and
+                                                                                  protects communication, key exchange, and authentication
+spot abnormalities. These models are improved by continuous
+                                                                                  from quantum adversaries by combining PQC algorithms with
+learning strategies such as experience replay and elastic weight
+                                                                                  IoT. The applied cryptographic approaches and algorithms are
+consolidation which help them become adaptable to new
+                                                                                  explained in this section, with particular attention paid to the
+threats without losing sight of previously learnt patterns.
+                                                                                  rationale behind their selection, implementation specifics, and
+Also Algorithm 1 is showing the secure communication and
+                                                                                  optimization tactics in IoT contexts with limited resources.
+authentication framework. The two main categories of data
+utilized for training and testing the anomaly detection algo-                        1) Key Exchange: Lattice-Based Cryptography (Kyber):
+rithms are real-world IoT data and simulated IoT data. It                         Kyber is selected as the main key encapsulation mechanism
+uses simulated IoT data, such as the UNSW-NB15 and BoT-                           because it provides a respectable degree of security and
+IoT to train deep learning models. A wide range of network                        adequate efficiency, making it a good trade-off with real-world
+traffic situations have been included in these datasets allowing                  use. Kyber uses cryptography based on lattices. It is well
+for the comparison of typical and unusual occurrences. This                       known that learning with error hardness is resistant to both
+makes it possible for the models to train well in order to                        classical and quantum attacks. Additionally, its small critical
+identify various kinds of abnormalities that could occur in a                     sizes and quick encryption and decryption processes make it
+IoT setting. Figure 2 shows the general distribution of data.                     a valuable tool for CPS, where low latency and low resource
+The primary distinction between the BoT-IoT and UNSW-                             usage are crucial. The Kyber key generation technique is used
+NB15 data distributions is still present. The assault traffic in                  by each IoT device to create a public-private key pair (pk , sk )
+the BoT-IoT makes up 80% of the dataset while the normal                          as shown in (4):
+traffic which is included in the focus category of the several
+simulated attack scenarios which only makes up 20%.                                                     (pk , sk ) = Kyber.KeyGen()                              (4)
+
+   Authorized licensed use limited to: Daffodil International University. Downloaded on November 04,2026 at 03:31:11 UTC from IEEE Xplore. Restrictions apply.
+4928                                                                            IEEE TRANSACTIONS ON CONSUMER ELECTRONICS, VOL. 71, NO. 2, MAY 2025
+
+
+
+Using the recipient’s public key pk , a sender device encap-
+sulates the key to create a shared secret key KKK as shown
+in (5):
+                (C, K) = Kyber.Encapsulate(pk )                           (5)
+where C represents the recipient’s ciphertext. The receiving
+device decrypts the ciphertext and retrieves the shared secret
+key K using its private key sk as shown in (6):
+                 K = Kyber.Decapsulate(C, sk )                            (6)     Fig. 3.   Proposed architecture of a combined CNN + VAE model.
+
+Symmetric encryption is then employed to secure communi-
+cation between the devices using this shared secret key K.                        The message will be verified as coming from the actual sender
+In IoT, where reducing computational overhead is essential,                       if the verification process is successful. SPHINCS+ : This
+Kyber’s small key sizes and effective operation are especially                    is especially suitable for IoT applications such as firmware
+beneficial.                                                                       updates, secure boot procedures, and crucial system com-
+   2) Code-Based Cryptography: This system safeguards the                         mands that call for digital signatures with long-term security.
+private communication information of the IoT. This cryptosys-                     SPHINCS+ provides robust, quantum-resistant security with-
+tem is immune to quantum assaults since it was built on the                       out requiring larger signatures for state management, which
+difficulty of decoding random linear codes. Also offers strong                    greatly streamlines implementation in distributed IoT, even
+security despite large public key sizes, making it appropriate                    if the signature sizes are more important than with previous
+for situations requiring long-term security. The key generation                   methods.
+technique is used by each device to create a public-private key                      4) Hybrid Cryptography: To provide backward compat-
+pair (pk , sk ) as shown in (7):                                                  ibility with older systems and a seamless transition to
+                        (pk , sk ) = KeyGen()                             (7)     post-quantum security, the crypto framework uses a hybrid
+                                                                                  approach during this migration phase. This indicates that it
+A sender device encrypts a message M using the recipient’s                        combines post-quantum and classical algorithms thus even in
+public key pk as shown in (8):                                                    the event that a quantum adversary breaches the classical layer,
+                        C = Encrypt(M, pk )                               (8)     the post-quantum layer will continue to defend the commu-
+                                                                                  nication. Lastly, keys are exchanged using a combination of
+The original message M is recovered by the receiver device                        a Kyber key exchange and a classical Diffie-Hellman system,
+using its private key sk to decrypt the ciphertext as shown                       the outputs of both key exchanges are concatenated to produce
+in (9):                                                                           the final shared key, which makes it safe from both classical
+                        M = Decrypt(C, sk )                               (9)     and quantum attacks as shown in (13):
+
+Only high-value communications, including control directives                            K = Concat(DH.KeyExchange(), Kyber.Encapsulate())                  (13)
+or configuration data, where the requirement for quantum-
+resistant security justifies the overhead, can employ due to its                  SPHINCS+ signatures are integrated with traditional digital
+enormous key sizes.                                                               signatures (such as Rivest-Shamir-Adleman). Both techniques
+   3) Hash-Based Cryptography (SPHINCS+): In this study,                          are used to sign the message, guaranteeing that at least one
+digital signatures are generated in IoT using SPHINCS+.                           signature is safe from upcoming quantum attacks as shown
+Strong protection against quantum assaults is provided by                         in (14):
+this stateless hash-based digital signature system. SPHINCS+                                σhybrid = (RSA.Sign(M), SPHINCS + .Sign(M))                    (14)
+is a dependable option for data integrity and authenticity
+in IoT contexts since it is made to avoid the majority of                         Throughout the shift to complete PQC, this hybrid strategy
+state-management issues that have plagued numerous hash-                          maintains the security of IoT systems.
+based schemes throughout their history. Each device generates
+a public-private key pair (pk , sk ) using the SPHINCS+ key                       B. Anomaly Detection With Deep Learning
+generation algorithm as shown in (10):                                               Any IoT system must be able to identify anomalies in
+                (pk , sk ) = SPHINCS + KeyGen()                         (10)      real time in order to stop possible cyberthreats. To identify a
+                                                                                  security breach, this section demonstrates how deep learning
+To sign a message M, a device uses its private key sk to                          models can be used to identify anomalous patterns in IoT data.
+generate a digital signature σ as shown in (11):                                  By incorporating ongoing learning, these models will be able
+                  σ = SPHINCS + .Sign(M, sk )                           (11)      to adjust to emerging threats and prevent losing what they have
+                                                                                  already learned.
+The signed message (M,σ ) is then transmitted to the recipient.
+                                                                                     CNNs make use of a potent type of neural networks that are
+The recipient uses the sender’s public key pk to verify the
+                                                                                  specifically made to operate with data that is graph-structured.
+signature as shown in (12):
+                                                                                  Applications specifically identify irregularities in IoT, where
+             Valid = SPHINCS + .Verify(σ, M, pk )                       (12)      a graph can depict the interconnections and dependencies
+
+  Authorized licensed use limited to: Daffodil International University. Downloaded on November 04,2026 at 03:31:11 UTC from IEEE Xplore. Restrictions apply.
+SHARMA AND RANI: PQC FOR IoT-CONSUMER ELECTRONICS DEVICES INTEGRATED WITH DEEP LEARNING                                                                     4929
+
+
+
+between numerous components. Nodes and edges in a graph                          and filters. An input layer is used first, such as node features,
+can be used to represent the complex relationships that                          graph data, or, for example, a 16-dimensional feature vector for
+are created by variables in IoT contexts involving sensors,                      each node. There are two graph convolutional network layers
+actuators, control systems, and networks. This CNN is highly                     in the model’s initial stage. To map node features from 16
+effective at identifying unusual behavior suggestive of security                 dimensions to 32 dimensions, the first CNN layer convolves
+vulnerabilities because it can extract both local and global                     the input graph using 32 filters (kernels) of size 16. ReLU
+dependencies. A CNN’s architecture typically consists of                         activation is then applied to provide non-linearity to the model
+numerous graph convolutional layers that gather data from a                      to capture more intricate patterns. The second CNN layer then
+node’s neighbors to develop a new representation (embedding)                     processes the node features using 64 filters of size 32. The
+for each node. Every node in a network exchanges data with                       dimensions are raised from 32 to 64 in this instance. This
+every other node. Based on their respective qualities and the                    layer’s output subsequently creates a compressed version of
+attributes of the edge that connects them, the message sent                      the input graph data, which we refer to as a Latent Space.
+from node υj to node υi is calculated. The following is a                        A reparameterization trick is used by the model to introduce
+description of the message-passing operation as shown in (15):                   variability in the latent space. The dimension is decreased
+                                                                               from 64 to 32 by passing the latent variable through a fully
+                  mij = Message (x)i , xj , aij            (15)                  linked layer with 32 filters. During the decoding interface,
+After aggregating messages from its neighbors, each node                         ReLU is applied to non-linearly activate the process. Among
+updates its embedding as shown in (16):                                          the generative model classes is the VAE, which learns to
+                                                                               encode and decode data into a probabilistic latent space.
+             (k+1)           (
+            xi     = Update xi k), σ( j ∈ N(i))mij   (16)                        Because VAEs can represent intricate data distributions, they
+                                                                                 are very helpful in IoT anomaly detection, allowing for the
+where k is the CNN layer and N(i) is the collection of node υi ’s                identification of deviations from the typical range of behavior.
+neighbors. To generate graph-level or node-level predictions,                    Because of this, VAEs are very good at spotting odd behavior
+the final node’s embeddings are either read out or pooled                        that can point to online attacks, system malfunctions, or other
+following several levels of message transmission and updating.                   security risks in IoT.
+This could be equivalent to a score in anomaly detection                            Input data x is mapped into a latent space z by the encoder.
+that indicates the likelihood that an edge or node would be                      This encoder transfers input onto a distribution over the latent
+anomalous. These abnormalities in IoT can then show up                           space and usually assumes a Gaussian process, in contrast to
+as either abnormal node characteristics or something else.                       the normal autoencoder that encodes data into a fixed latent
+CNNs’ strong capacity to store relational information in the                     vector. The latent variable z is sampled using the mean μ and
+graph makes it simple for them to identify such anomalies.                       standard deviation σ of this distribution, which are generated
+To learn common patterns of interactions and system states,                      by the encoder as shown in (18):
+the CNN was trained using a dataset that included the IoT
+typical activity. It learns to provide embeddings for each node                                             z ≈ N(μ(x), σ (x))                             (18)
+and edge in the graph that depict typical behavior. To provide
+embeddings for the current system state during inference, the                    where μ(x) and σ (x) are the outputs of the encoder neu-
+real IoT data passes through the CNN at runtime. After that, it                  ral network. The VAE architecture incorporates continuous
+compares these embeddings to learnt normal behavior, giving                      learning strategies: experience a buffer of previously observed
+nodes and edges anomaly scores according to how much they                        normal and aberrant data points is maintained by replay.
+differ from the predicted patterns. For node υj , the anomaly
+score can be computed as shown in (17):                                          C. Enhanced Explanation of EWC and Its Role in
+                                               (                                 Preventing Catastrophic Forgetting
+               AnomalyScore(υi ) = [xi ] k) − [x]         i
+                                                                        (17)
+                                                                                    Catastrophic forgetting occurs when a deep learning model,
+where [x]i is the predicted embedding for typical behaviour                      after being trained on new data, loses its ability to recall
+and [xi ]( k) is the embedding of node υi in the final CNN                       previously learned knowledge. This is particularly problematic
+layer. Anomalies are identified by nodes and edges that have                     in IoT-based IDS, where the model needs to continuously
+scores higher than a specified threshold. In order to achieve                    adapt to emerging cyber threats while retaining its ability to
+this, the CNN incorporates continuous learning approaches                        detect past attack patterns. EWC mitigates this issue by iden-
+to make it adaptable to dynamic IoT and novel anomaly                            tifying important model parameters and applying constraints
+patterns. It keeps track of historical graph states and the                      to prevent drastic modifications to those critical weights
+anomaly labels that go with them. During training, these                         when learning new tasks. It does this through the following
+prior experiences are frequently replayed, allowing the model                    mechanisms:
+to learn from fresh data while retaining knowledge about                            • Fisher Information Matrix (FIM): Estimates the impor-
+previously observed abnormalities. Figure 2 illustrates the                            tance of each model parameter based on its contribution
+general architecture of the combined CNN + variational auto                            to past learning.
+encoder (VAE) model, which implements the encoding and                              • Regularization of Important Weights: Prevents significant
+decoding of graph-structured data through layers that are                              changes to critical parameters, ensuring past knowledge
+specially specified, including information on the kernel size                          is preserved while allowing new learning.
+
+  Authorized licensed use limited to: Daffodil International University. Downloaded on November 04,2026 at 03:31:11 UTC from IEEE Xplore. Restrictions apply.
+4930                                                                          IEEE TRANSACTIONS ON CONSUMER ELECTRONICS, VOL. 71, NO. 2, MAY 2025
+
+
+
+  •  Stability vs. Plasticity Balance: Allows the model to
+     learn new attack vectors without overwriting previously
+     acquired knowledge.
+Mathematically, EWC modifies the standard loss function as
+follows as shown in (19):
+                                              2
+             L(θ ) = Lnew (θ ) + λ  Fi θi − θi∗         (19)
+                                         i
+where: Lnew (θ ) is the loss for the new task, λ is a hyperparam-
+eter controlling the trade-off between knowledge retention and
+adaptability, Fi is the Fisher Information Matrix, representing
+parameter importance and θi∗ represents the optimal parameter
+values from the previous learning task.
+
+                 IV. R ESULTS AND D ISCUSSION
+   The experimental evaluation has been done by deploying
+our framework on Raspberry Pi 4 (ARM Cortex-A72, 4GB
+RAM) and ESP32 (Xtensa dual-core 32-bit LX6, 520KB                               Fig. 4.   Reconstruction accuracy of CNN+VAE model on BoT-IoT.
+RAM). With a focus on tasks such as anomaly detection and
+data reconstruction in the context of IoT, the combined CNN
+and VAE model was evaluated using graph-structured data.
+The model’s performance was assessed using a number of
+critical metrics, including as recall, reconstruction accuracy,
+anomaly detection precision, and overall robustness to new
+and unidentified data patterns. The CNN and VAE model
+accurately identified the principal structure of 99.7% of the
+input graphs and successfully rebuilt them. The average dif-
+ference between actual and projected values, or mean squared
+error (MSE), was only 0.015, indicating that the model is
+sufficiently accurate to recreate input samples with negligible
+mistakes. These results suggest that it works well in situations
+where precise data reconstruction is required, such as in
+anomaly detection and graph generating applications. With a
+precision score of 96% and a recall score of 94%, CNN and
+VAE produced an F1-score rate of 93.45%, indicating high
+accuracy in this situation as shown in the below Table.
+                                                                                 Fig. 5.   Reconstruction accuracy of CNN+VAE model on UNSW-NB-15.
+
+
+
+                                                                                 reconstruction errors. As the model is trained, the training loss
+                                                                                 (solid blue line) steadily drops to a shallow value. Similarly,
+                                                                                 the training loss and the testing loss (shown by the dotted
+   The route of the CNN + VAE model’s reconstructing rate                        green line) trend in the same direction and nearly coincide. The
+for the trained and tested data across a hundred epochs is                       testing and training loss functions are both decreasing, and the
+displayed in Figure 5. It is evident from the accuracy curves                    testing function’s minimum is reached at the epoch number
+that the model is learning over time. The training accuracy,                     that matches the training function’s minimum. This suggests
+represented by the blue solid line, increases dramatically in                    that the model can generalize well to new data and that there
+the initial epochs and gradually converges to almost 100% as                     is little overfitting to the training set. As demonstrated by the
+the training phase progresses. Similarly, testing accuracy rises,                lowering of both losses to almost zero, the CNN + VAE model
+as shown by the dashed green line. It does, however, level off                   is highly effective at reconstructing graph-structured data and
+at a high level near the end of the training procedure and is                    can be used for tasks like anomaly detection in IoT.
+marginally lower than the training accuracy.                                        In Table II, the authors concentrate on the PQC algorithms’
+   The CNN + VAE model’s reconstruction error for 100                            performance and security overheads within the framework of
+epochs in both training and testing datasets is displayed                        cyber-physical systems. One of the machines may therefore
+in Figure 6 and Figure 7. Additionally, the graph shows a                        generate 12 key generations each second. rate of 5 ms,
+significant drop in loss values during the initial epochs,                       encryption/decryption time of approximately 25 ms, digital
+indicating that the model quickly learns how to minimize                         signature verification time of 30 ms, and 3 ms demonstrate that
+
+  Authorized licensed use limited to: Daffodil International University. Downloaded on November 04,2026 at 03:31:11 UTC from IEEE Xplore. Restrictions apply.
+SHARMA AND RANI: PQC FOR IoT-CONSUMER ELECTRONICS DEVICES INTEGRATED WITH DEEP LEARNING                                                                      4931
+
+
+
+
+                                                                                  Fig. 8.   Trade-offs between security strength and computational overhead.
+
+                                                                                  the model’s output especially the 99% is quite impressive.
+                                                                                  Some real-time applications may be hindered by the pro-
+Fig. 6.   Reconstruction error of CNN + VAE model on BoT-IoT.                     cessing requirements, even though the more complicated
+                                                                                  scenes can be reconstructed with a relatively low accuracy
+                                                                                  of 7%. The suggested model’s computational performance
+                                                                                  should be enhanced in future research so that it may be
+                                                                                  used in low-power devices with no loss in result accuracy.
+                                                                                  Furthermore, testing the suggested model on larger and more
+                                                                                  varied IoT databases would improve the model’s legitimacy
+                                                                                  and dependability. One useful method for enhancing security
+                                                                                  and shielding IoT from online attacks is the CNN + VAE
+                                                                                  paradigm. Also the comparison of proposed work with existing
+                                                                                  work [5] is shown in Table III. Figure 8 is showing trade-offs
+                                                                                  between security strength and computational overhead.
+
+                                                                                  A. Case Study
+                                                                                     To further validate the effectiveness of our hybrid PQC-
+                                                                                  Deep Learning security framework, we conducted a case study
+                                                                                  on a simulated smart grid. This environment consists of 500
+                                                                                  interconnected IoT smart meters and control units, where each
+                                                                                  device is responsible for secure data exchange and real-time
+Fig. 7.   Reconstruction error of CNN + VAE model on UNSW-NB-15.                  anomaly detection. Below, we detail the setup, security chal-
+                                                                                  lenges, implementation of PQC and IDS, evaluation metrics,
+                             TABLE II                                             and results. A smart grid consists of smart meters, substation
+S ECURITY M ETRICS AND P ERFORMANCE OVERHEAD OF P OST-Q UANTUM
+                C RYPTOGRAPHY (PQC) A LGORITHMS                                   control units, and central servers that monitor and manage
+                                                                                  electricity distribution. Each smart meter reports energy con-
+                                                                                  sumption data to a control unit at regular intervals. The devices
+                                                                                  use lightweight, energy-efficient message transmission, which
+                                                                                  are standard for IoT applications. Attackers attempt to inter-
+                                                                                  cept and modify energy readings. Reused, previously captured
+                                                                                  smart meter data is injected to manipulate billing records.
+                                                                                  Unauthorized firmware updates attempt to compromise device
+                                                                                  integrity. Given the vulnerability of traditional cryptographic
+                                                                                  schemes (RSA, ECC) to quantum threats, we deployed a
+cryptographic procedures are not problematic concerning real-                     hybrid PQC approach as shown in Table IV.
+time communications. The system’s ability to process 5000
+operations per second and its energy usage of 2.4 MJ indicate
+                                                                                              V. C HALLENGES IN I OT S ECURITY W ITH
+that the cryptographic procedures are energy-efficient, allow-
+                                                                                                     R ESOURCE C ONSTRAINTS
+ing them to be used with devices that are restricted in their
+functionality. The findings show that PQC algorithms maintain                     A. Limited Computational Power
+high efficiency while offering good protective capabilities.                         Most IoT devices are equipped with low-power
+This would enable the system to be utilized in situations where                   microcontrollers (e.g., ARM Cortex-M, ESP32, RISC-V)
+energy and computational resources are scarce. Nonetheless,                       that operate at tens to hundreds of MHz, with low-power
+   Authorized licensed use limited to: Daffodil International University. Downloaded on November 04,2026 at 03:31:11 UTC from IEEE Xplore. Restrictions apply.
+4932                                                                          IEEE TRANSACTIONS ON CONSUMER ELECTRONICS, VOL. 71, NO. 2, MAY 2025
+
+
+                                                                     TABLE III
+                                                C OMPARISON OF P ROPOSED W ORK W ITH E XISTING W ORK
+
+
+
+
+                           TABLE IV
+       I MPLEMENTATION OF PQC FOR S ECURE C OMMUNICATION                         encryption layers simultaneously can lead to increased pro-
+                                                                                 cessing latency, making real-time communication inefficient.
+                                                                                 To minimize computational overhead while ensuring quan-
+                                                                                 tum resistance, we propose an optimized hybrid encryption
+                                                                                 approach where: A lightweight classical encryption scheme
+                                                                                 (e.g., AES-256) is used for encrypting real-time data and Post-
+                                                                                 quantum encryption (e.g., Kyber, NTRUEncrypt) is selectively
+                                                                                 applied to encrypt only critical data packets.
+                                                                                    By applying AES-256 encryption to real-time data while
+                                                                                 using hybrid encryption only for session key exchange, we
+                                                                                 achieve: Lower computational overhead, since AES operations
+processing cores and limited instruction sets. These devices                     are computationally inexpensive, Backward compatibility,
+are typically designed for efficiency rather than intensive                      allowing legacy systems to transition smoothly to PQC
+computations. However, post-quantum cryptographic (PQC)                          and Post-quantum security, ensuring resilience against future
+algorithms, such as lattice-based encryption and hash-based                      quantum attacks.
+signatures, require significantly more processing power than
+traditional cryptographic schemes such as AES and RSA.                                                       VI. C ONCLUSION
+PQC algorithms involve large polynomial operations and
+matrix multiplications, which are computationally demanding.                        Consequently, great security and efficiency were demon-
+Traditional IoT processors lack dedicated cryptographic                          strated by the suggested method, which integrates PQC with
+hardware accelerators for post-quantum operations, leading to                    deep learning-based anomaly detection in IoT. When evaluated
+high processing latency and delayed real-time responses.                         against simulated quantum attacks, the implemented PQC
+                                                                                 algorithms showed good resistance while incurring moderate
+                                                                                 performance overheads in terms of energy cost, data rate,
+B. Energy Consumption                                                            and delay. Additionally, the deep learning models demon-
+   IoT devices are often battery-powered and expected to                         strated their effectiveness in capturing and reconstructing
+operate for months or even years on a single charge.                             graph-structured data with a high reconstruction accuracy of
+However, cryptographic operations—especially post-quantum                        99.45%. The model’s great generalization ability increased
+algorithms—consume more energy due to increased CPU                              the system’s resilience to newly emerging threats and allowed
+cycles and complex computations. More complex mathe-                             for real-time deployment in restricted systems such as IoT
+matical computations (e.g., lattice-based cryptography) drain                    devices. To make the PQC algorithms even more appropriate
+battery faster. Increased power consumption from secure                          for real-time IoT applications, the authors must refine them
+communication protocols like PQC-TLS (Post-Quantum TLS).                         and reduce their computational complexity in future work.
+Frequent cryptographic key exchange increases radio transmis-                    Studying the application of both classical and post-quantum
+sion energy consumption.                                                         cryptography is another field of study that could aid in the
+                                                                                 shift to quantum-safe cryptography. Furthermore, expanding
+                                                                                 the suggested system to include larger and more varied IoT-
+C. Increased Processing Time in Hybrid Encryption                                related datasets would reveal details on the scalability and
+  The integration of both classical and PQC schemes intro-                       dependability of the model. The flexibility of the IoT security
+duces additional computational complexity due to the need for                    framework can also be increased by introducing adaptive
+multiple encryption and decryption operations. Running both                      mechanisms that will regulate cryptographic operations based
+
+  Authorized licensed use limited to: Daffodil International University. Downloaded on November 04,2026 at 03:31:11 UTC from IEEE Xplore. Restrictions apply.
+SHARMA AND RANI: PQC FOR IoT-CONSUMER ELECTRONICS DEVICES INTEGRATED WITH DEEP LEARNING                                                                      4933
+
+
+
+on the system’s current state, such as the amount of power                        [11] R. Elkhatib, B. Koziel, R. Azarderakhsh, M. M. Kermani,
+being consumed or the level of threat.                                                 “Accelerated RISC-V for post-quantum SIKE,” IEEE Trans.
+                                                                                       Circuits Syst. I, Reg. Papers, vol. 69, no. 6, pp. 2490–2501,
+                                                                                       Jun. 2022.
+                              R EFERENCES                                         [12] M. R. Nosouhi, S. W. A. Shah, L. Pan, and R. Doss, “Bit flipping
+                                                                                       key encapsulation for the post-quantum era,” IEEE Access, vol. 11,
+ [1] T. M. Fernández-Caramés, “From pre-quantum to post-quantum IoT                    pp. 56181–56195, 2023.
+     security: A survey on quantum-resistant cryptosystems for the Internet       [13] D. Amiet, L. Leuenberger, A. Curiger, and P. Zbinden, “FPGA-
+     of Things,” IEEE Internet Things J., vol. 7, no. 7, pp. 6457–6480, Jul.           based SPHINCS implementations: Mind the glitch,” in Proc.
+     2020.                                                                             23rd Euromicro Conf. Digit. Syst. Design (DSD), Aug. 2020,
+ [2] M. Amadeo, C. Campolo, J. Quevedo, D. Corujo, A. Molinaro, and                    pp. 229–237.
+     A. Iera, “Information-centric networking for the Internet of Things:         [14] V. Satheesh and D. Shanmugam, “Implementation vulnerability anal-
+     Challenges and opportunities,” IEEE Netw., vol. 30, no. 2, pp. 92–100,            ysis: A case study on ChaCha of SPHINCS,” in Proc. IEEE Int.
+     Mar./Apr. 2016.                                                                   Symp. Smart Electron. Syst. (iSES) (Formerly iNiS), Dec. 2020,
+ [3] M. Ma, D. He, N. Kumar, K. K. R. Choo, and J. Chen, “Certificateless              pp. 97–102.
+     searchable public key encryption scheme for Industrial Internet of           [15] Q. Berthet, A. Upegui, L. Gantel, A. Duc, and G. Traverso, “An area-
+     Things,” IEEE Trans. Ind. Informat., vol. 14, no. 2, pp. 759–767,                 efficient SPHINCS post-quantum signature coprocessor,” in Proc. IEEE
+     Feb. 2018.                                                                        Int. Parallel Distrib. Process. Symp. Workshops (IPDPSW), Portland,
+ [4] D.-T. Dam, T.-H. Tran, V.-P. Hoang, C.-K. Pham, and T.-T. Hoang,                  OR, USA, Jun. 2021, pp. 17–21.
+     “A survey of post-quantum cryptography: Start of a new race,”                [16] H. Sharma, N. Kumar, I. Budhiraja, and A. Barnawi, “Secrecy rate
+     Cryptography, vol. 7, no. 3, p. 40, 2023.                                         maximization in THz-aided heterogeneous networks: A deep reinforce-
+ [5] R. Bavdekar, E. J. Chopde, A. Bhatia, K. Tiwari, and S. J. Daniel,                ment learning approach,’ IEEE Trans. Veh. Technol., vol. 72, no. 10,
+     “Post quantum cryptography: Techniques, challenges, standardization,              pp. 13490–13505, Oct. 2023
+     and directions for future research,” 2022, arXiv:2202.02826.                 [17] K. A. Awan, I. U. Din, A. Almogren, and J. J. Rodrigues,
+ [6] A. Karakaya and A. Ulu, “A review on latest developments in post-                 “Quantum-assisted intelligent decision support systems for
+     quantum based secure blockchain systems,” in Proc. 11th Int. Symp.                trustworthy renewable energy management in consumer devices,”
+     Digit. Forensics Security (ISDFS), Chattanooga, TN, USA, May 2023,                IEEE Trans. Consum. Electron., vol. 70, no. 2,pp. 4665–4672,
+     pp. 1–6.                                                                          May 2024.
+ [7] M. Adhikari et al., “Security in edge-centric intelligent Internet of        [18] M. S. Peelam, S. Sai, and V. Chamola, “Explorative implementation
+     Vehicles: Issues and remedies,” IEEE Consum. Electron. Mag., vol. 11,             of quantum key distribution algorithms for secure consumer elec-
+     no. 6, pp. 24–31, Nov. 2022.                                                      tronics networks,” IEEE Trans. Consum. Electron., vol. 70, no. 3,
+ [8] S. A. Boamah, J. D. Louis, J. McNair, and J. E. Gilbert, “A survey                pp. 5576–5584, Aug. 2024.
+     for blockchain-enabled resource management in edge networks,” IEEE           [19] A. Singh, M. K. Khan, and A. Kumar, “Guest editorial advanced
+     Access, vol. 13, pp. 77252–77277, 2025.                                           learning intelligence in quantum-enabled consumer applications,”
+ [9] J. Park et al., “Extreme ultra-reliable and low-latency communication,”           IEEE Trans. Consum. Electron., vol. 70, no. 3, pp. 5533–5535,
+     Nat. Electron., vol. 5, pp. 133–141, Mar. 2022.                                   Aug. 2024.
+[10] Y.-M. Kuo, F. G. Herrero, O. Ruano, and J. A. Maestro, “RISC-V Galois        [20] D. Tosh, O. Galindo, V. Kreinovich, and O. Kosheleva, “Towards
+     field ISA extension for non-binary error-correction codes and classical           security of cyber-physical systems using quantum computing algo-
+     and post-quantum cryptography,” IEEE Trans. Comput., vol. 72, no. 3,              rithms,” in Proc. IEEE 15th Int. Conf. Syst. Eng. (SoSE), 2020,
+     pp. 682–692, Mar. 2023.                                                           pp. 313–320.
+
+
+
+
+   Authorized licensed use limited to: Daffodil International University. Downloaded on November 04,2026 at 03:31:11 UTC from IEEE Xplore. Restrictions apply.
+

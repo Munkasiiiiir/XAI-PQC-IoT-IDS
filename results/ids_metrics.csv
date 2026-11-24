@@ -1,0 +1,5 @@
+task,model,train_seconds,infer_seconds_mean,infer_seconds_std,infer_ms_per_sample,model_size_mb,accuracy,precision,recall,f1,macro_f1,weighted_f1
+binary,RandomForest,9.79,0.159,0.0071,0.0042,16.006,0.9976,0.9982,0.9987,0.9984,0.9964,0.9976
+binary,LightGBM,17.895,0.1815,0.0152,0.0048,1.985,0.9975,0.999,0.9978,0.9984,0.9964,0.9975
+multiclass,RandomForest,13.03,0.5204,0.0153,0.0137,163.121,0.9768,0.9495,0.9547,0.9519,0.9519,0.9768
+multiclass,LightGBM,53.574,8.2933,1.084,0.2177,25.459,0.9797,0.9464,0.9636,0.9539,0.9539,0.98

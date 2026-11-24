@@ -1,0 +1,2 @@
+artifacts/models/*.joblib filter=lfs diff=lfs merge=lfs -text
+artifacts/processed/*.joblib filter=lfs diff=lfs merge=lfs -text
