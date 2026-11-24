@@ -62,7 +62,7 @@ This claim remains open until a broader related-work sweep is finalised; it is *
 
 ## 5. Proposed Research Methodology
 
-1. **Datasets:** ToN-IoT Network Train/Test (primary); UNSW-NB15 or Edge-IIoTset (cross-evaluation).  
+1. **Datasets:** ToN-IoT Network Train/Test (primary); UNSW-NB15 and Edge-IIoTset (cross-evaluation completed; 3 seeds each).  
 2. **Preprocessing:** Cleaning, encoding, imbalance-aware metrics, feature selection, removal of identifier leakage (e.g., raw IPs/ports where unjustified).  
 3. **IDS:** LightGBM primary; Random Forest baseline; optional simplified DL baseline for fair comparison with Sharma & Rani.  
 4. **XAI:** TreeSHAP on **alerts only**; LIME only if it adds measurable offline value.  

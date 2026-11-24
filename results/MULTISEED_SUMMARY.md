@@ -1,10 +1,12 @@
 # Multi-seed findings
 
-n=3 seeds: mean +/- sd (min-max). Cross-dataset macro-F1 is descriptive, not a head-to-head test.
+n=3 seeds `{42, 123, 2024}`: mean ± sd. Cross-dataset macro-F1 is descriptive, not a head-to-head test.  
+Ledger: `results/runs.csv`. Snapshot: `results/joint_results_snapshot.txt`.  
+PQC (host PC, not re-run): ML-KEM-512 < 0.1 ms/op; ML-DSA-44 sign ≈ 6.9 ms.
 
 ## edge_iiot
 
-Seeds: 42, 123, 2024
+Seeds: 42, 123, 2024 · 156,986 rows after dedupe · 42 features · 15 classes
 
 | task/model | macro-F1 (mean±sd) | F1 | size MB | infer ms | SHAP ms/alert |
 |---|---|---|---|---|---|
@@ -15,7 +17,7 @@ Seeds: 42, 123, 2024
 
 ## ton_iot
 
-Seeds: 42, 123, 2024
+Seeds: 42, 123, 2024 · 190,474 rows after dedupe · 30 features · 10 classes
 
 | task/model | macro-F1 (mean±sd) | F1 | size MB | infer ms | SHAP ms/alert |
 |---|---|---|---|---|---|
@@ -26,7 +28,7 @@ Seeds: 42, 123, 2024
 
 ## unsw_nb15
 
-Seeds: 42, 123, 2024
+Seeds: 42, 123, 2024 · 257,673 rows after dedupe · 42 features · 10 classes
 
 | task/model | macro-F1 (mean±sd) | F1 | size MB | infer ms | SHAP ms/alert |
 |---|---|---|---|---|---|
@@ -34,3 +36,11 @@ Seeds: 42, 123, 2024
 | binary/RandomForest | 0.9467±0.0004 | 0.9614±0.0002 | 276.3 | 0.0154 | n/a |
 | multiclass/LightGBM | 0.5912±0.0114 | 0.5912±0.0114 | 26.4 | 0.2253 | 41.66±0.59 |
 | multiclass/RandomForest | 0.5833±0.0065 | 0.5833±0.0065 | 1110.0 | 0.0339 | n/a |
+
+## Read-out notes
+
+- **H1:** Multi-class LightGBM ≈ RF everywhere; binary RF ahead on Edge (and slightly on UNSW).
+- **H2:** Holds — multi-class LightGBM ~25–36 MB vs RF ~163–1110 MB.
+- **H3:** Multi-class SHAP ≫ binary, but not purely class-count driven (Edge 15 cls cheaper than UNSW 10).
+- **H4:** Holds — ML-DSA-44 sign (~6.9 ms) dominates ML-KEM and IDS inference on this host.
+- UNSW multi-class macro-F1 is rare-class sensitive; report per-class metrics in the paper.

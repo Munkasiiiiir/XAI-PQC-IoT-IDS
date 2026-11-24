@@ -1,3 +1,7 @@
-task,model,n_alerts_explained,shap_seconds_mean,shap_seconds_std,ms_per_alert,feature_perturbation
-binary,LightGBM,200,0.4059,0.016,2.0295,tree_path_dependent
-multiclass,LightGBM,200,3.0587,0.0942,15.2936,tree_path_dependent
+dataset,task,model,n_seeds,ms_per_alert_mean,ms_per_alert_sd,ms_per_alert_min,ms_per_alert_max,feature_perturbation,n_alerts
+edge_iiot,binary,LightGBM,3,2.02811,0.084983,1.935735,2.102972,tree_path_dependent,200
+edge_iiot,multiclass,LightGBM,3,23.797835,0.588868,23.206597,24.384304,tree_path_dependent,200
+ton_iot,binary,LightGBM,3,3.350039,0.435467,2.951302,3.814715,tree_path_dependent,200
+ton_iot,multiclass,LightGBM,3,28.688674,3.290877,26.401789,32.460327,tree_path_dependent,200
+unsw_nb15,binary,LightGBM,3,4.164147,0.154804,4.030066,4.333565,tree_path_dependent,200
+unsw_nb15,multiclass,LightGBM,3,41.657355,0.594071,40.971491,42.010962,tree_path_dependent,200

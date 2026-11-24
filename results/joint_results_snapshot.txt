@@ -1,46 +1,78 @@
 ========================================================================
-JOINT RESULTS SNAPSHOT (Software-only pipeline)
+JOINT RESULTS SNAPSHOT (Software-only; multi-seed n=3)
 ========================================================================
+Seeds: {42, 123, 2024}. Each seed drives the stratified 80/20 split and
+model random_state. Values below are mean ± sd unless noted.
+Canonical ledger: results/runs.csv | Summary: results/MULTISEED_SUMMARY.md
+PQC was NOT re-run in this batch; timings reused from host-PC microbenchmarks.
 
-1) IDS detection (ToN-IoT Network, leakage features removed)
-      task        model  train_seconds  infer_seconds_mean  infer_seconds_std  infer_ms_per_sample  model_size_mb  accuracy  precision  recall     f1  macro_f1  weighted_f1
-    binary RandomForest          9.790              0.1590             0.0071               0.0042         16.006    0.9976     0.9982  0.9987 0.9984    0.9964       0.9976
-    binary     LightGBM         17.895              0.1815             0.0152               0.0048          1.985    0.9975     0.9990  0.9978 0.9984    0.9964       0.9975
-multiclass RandomForest         13.030              0.5204             0.0153               0.0137        163.121    0.9768     0.9495  0.9547 0.9519    0.9519       0.9768
-multiclass     LightGBM         53.574              8.2933             1.0840               0.2177         25.459    0.9797     0.9464  0.9636 0.9539    0.9539       0.9800
+1) IDS detection — LightGBM / RandomForest (mean±sd)
+------------------------------------------------------------------------
+dataset      task        model         macro_F1          F1               size_MB   infer_ms
+ton_iot      binary      LightGBM      0.9968±0.0003     0.9986±0.0001     2.0       0.0245
+ton_iot      binary      RandomForest  0.9968±0.0004     0.9986±0.0002     16.2      0.0094
+ton_iot      multiclass  LightGBM      0.9546±0.0018     0.9546±0.0018     25.5      0.2868
+ton_iot      multiclass  RandomForest  0.9530±0.0010     0.9530±0.0010     162.8     0.0228
+unsw_nb15    binary      LightGBM      0.9443±0.0013     0.9580±0.0011     2.0       0.0125
+unsw_nb15    binary      RandomForest  0.9467±0.0004     0.9614±0.0002     276.3     0.0154
+unsw_nb15    multiclass  LightGBM      0.5912±0.0114     0.5912±0.0114     26.4      0.2253
+unsw_nb15    multiclass  RandomForest  0.5833±0.0065     0.5833±0.0065     1110.0    0.0339
+edge_iiot    binary      LightGBM      0.9110±0.0016     0.9699±0.0006     2.0       0.0132
+edge_iiot    binary      RandomForest  0.9319±0.0016     0.9796±0.0004     98.1      0.0092
+edge_iiot    multiclass  LightGBM      0.8314±0.0022     0.8314±0.0022     35.8      0.2837
+edge_iiot    multiclass  RandomForest  0.8308±0.0017     0.8308±0.0017     1039.4    0.0232
 
-2) TreeSHAP overhead (alert-level, 200 alerts)
-      task    model  n_alerts_explained  shap_seconds_mean  shap_seconds_std  ms_per_alert feature_perturbation
-    binary LightGBM                 200             0.4059            0.0160        2.0295  tree_path_dependent
-multiclass LightGBM                 200             3.0587            0.0942       15.2936  tree_path_dependent
+Rows after dedupe: ToN 190,474 | UNSW 257,673 | Edge 156,986
+Features: ToN 30 | UNSW 42 | Edge 42
+Classes:  ToN 10 | UNSW 10 | Edge 15
 
-3) Top-10 global features (multi-class LightGBM)
-     feature  mean_abs_shap
-src_ip_bytes       1.631369
-  conn_state       1.154607
-    duration       0.946160
-dst_ip_bytes       0.546807
-   src_bytes       0.527567
-    src_pkts       0.354230
-   dst_bytes       0.332915
-    dst_pkts       0.241374
-       proto       0.231422
-      dns_RA       0.118013
+2) TreeSHAP overhead (LightGBM only; 200 predicted alerts; mean±sd ms/alert)
+------------------------------------------------------------------------
+dataset      binary_ms/alert   multiclass_ms/alert
+ton_iot      3.35±0.44         28.69±3.29
+unsw_nb15    4.16±0.15         41.66±0.59
+edge_iiot    2.03±0.08         23.80±0.59
+feature_perturbation = tree_path_dependent
 
-4) PQC software microbenchmarks (host PC; NOT edge hardware)
-   family   algorithm  public_key_bytes  ciphertext_bytes  signature_bytes  keygen_ms  encaps_or_sign_ms  decaps_or_verify_ms
-   ML-KEM  ml_kem_512               800             768.0              NaN     0.0382             0.0484               0.0592
-   ML-KEM  ml_kem_768              1184            1088.0              NaN     0.0609             0.0727               0.0898
-   ML-KEM ml_kem_1024              1568            1568.0              NaN     0.0917             0.1054               0.1262
-   ML-DSA   ml_dsa_44              1312               NaN           2420.0     0.1281             6.8974               0.1286
-   ML-DSA   ml_dsa_65              1952               NaN           3309.0     0.2252             9.6713               0.1980
-   ML-DSA   ml_dsa_87              2592               NaN           4627.0     0.3252            12.9136               0.3092
-Classical   ECDH_P256                65               NaN              NaN     0.0153             0.0469                  NaN
-Classical  ECDSA_P256                65               NaN             72.0     0.0146             0.0236               0.0628
+3) Top-10 global features (ToN-IoT multi-class LightGBM, seed 42)
+------------------------------------------------------------------------
+feature         mean_abs_shap
+src_ip_bytes    1.619326
+conn_state      1.135546
+duration        0.965440
+src_bytes       0.544117
+dst_ip_bytes    0.516786
+dst_bytes       0.388953
+src_pkts        0.363345
+dst_pkts        0.287293
+proto           0.223745
+dns_RA          0.109411
+
+4) PQC software microbenchmarks (host PC; NOT edge hardware; not re-run)
+------------------------------------------------------------------------
+family     algorithm     keygen_ms  encaps_or_sign_ms  decaps_or_verify_ms
+ML-KEM     ml_kem_512    0.0382     0.0484             0.0592
+ML-KEM     ml_kem_768    0.0609     0.0727             0.0898
+ML-KEM     ml_kem_1024   0.0917     0.1054             0.1262
+ML-DSA     ml_dsa_44     0.1281     6.8974             0.1286
+ML-DSA     ml_dsa_65     0.2252     9.6713             0.1980
+ML-DSA     ml_dsa_87     0.3252     12.9136            0.3092
+Classical  ECDH_P256     0.0153     0.0469             n/a
+Classical  ECDSA_P256    0.0146     0.0236             0.0628
+
+5) Hypothesis read-out (descriptive; n=3)
+------------------------------------------------------------------------
+H1 (LGBM >= RF macro-F1): holds for multi-class; soft miss on binary
+    Edge (−0.021) and slight miss on UNSW binary (−0.002).
+H2 (LGBM much smaller at comparable F1): holds (≈25–36 MB vs ≈163–1110 MB).
+H3 (SHAP ms/alert driven by class count): partial — multi >> binary, but
+    Edge (15 cls) is cheaper than UNSW/ToN (10 cls); tree complexity matters.
+H4 (ML-DSA sign dominates crypto vs ML-KEM / IDS infer): holds on this host.
 
 Notes:
 - Hardware integration skipped per supervisor guidance.
-- PQC timings are software-only on the local machine.
-- XAI uses tree_path_dependent TreeSHAP on predicted alerts only.
-- Next: deeper analysis figures, optional second dataset, paper draft.
+- Cross-dataset macro-F1 is descriptive, not a head-to-head significance test.
+- UNSW multi-class macro-F1 is depressed by rare classes (e.g. worms).
+- Legacy single-seed files (ids_summary.txt, older figures) are superseded by
+  this snapshot and results/MULTISEED_SUMMARY.md.
 ========================================================================

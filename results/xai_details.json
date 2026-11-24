@@ -1,348 +1,358 @@
 {
-  "binary": {
-    "example": {
-      "n_alerts_available": 29651,
-      "n_alerts_explained": 200,
-      "alert_indices_sample": [
-        14066,
-        19267,
-        17047,
-        3404,
-        3417,
-        13439,
-        19484,
-        24882,
-        8926,
-        22980
-      ],
-      "top_features_global": [
-        {
-          "feature": "proto",
-          "mean_abs_shap": 1.8280308624846444
-        },
-        {
-          "feature": "src_pkts",
-          "mean_abs_shap": 1.0131575107523247
-        },
-        {
-          "feature": "conn_state",
-          "mean_abs_shap": 0.6724077602791303
-        },
-        {
-          "feature": "dst_pkts",
-          "mean_abs_shap": 0.6079133983036127
-        },
-        {
-          "feature": "duration",
-          "mean_abs_shap": 0.6077038979400453
-        },
-        {
-          "feature": "src_ip_bytes",
-          "mean_abs_shap": 0.5793405267471301
-        },
-        {
-          "feature": "dst_ip_bytes",
-          "mean_abs_shap": 0.4459990844334044
-        },
-        {
-          "feature": "dst_bytes",
-          "mean_abs_shap": 0.34079458967773346
-        },
-        {
-          "feature": "dns_qtype",
-          "mean_abs_shap": 0.28607732044858375
-        },
-        {
-          "feature": "service",
-          "mean_abs_shap": 0.28151722832070475
-        }
-      ]
-    },
-    "global_importance_csv": "/home/munkasiiiiir/Documents/Research with Ahasan Sir/results/xai_global_importance_binary_lightgbm.csv",
-    "figure": "/home/munkasiiiiir/Documents/Research with Ahasan Sir/figures/shap_global_binary_lightgbm.png"
-  },
-  "multiclass": {
-    "example": {
-      "n_alerts_available": 29721,
-      "n_alerts_explained": 200,
-      "alert_indices_sample": [
-        14066,
-        19270,
-        17046,
-        3408,
-        3422,
-        13440,
-        19490,
-        24876,
-        8925,
-        22981
-      ],
-      "top_features_global": [
-        {
-          "feature": "src_ip_bytes",
-          "mean_abs_shap": 1.6313687469956812
-        },
-        {
-          "feature": "conn_state",
-          "mean_abs_shap": 1.1546071242285938
-        },
-        {
-          "feature": "duration",
-          "mean_abs_shap": 0.9461602285319635
-        },
-        {
-          "feature": "dst_ip_bytes",
-          "mean_abs_shap": 0.5468072640031777
-        },
-        {
-          "feature": "src_bytes",
-          "mean_abs_shap": 0.5275669077681342
-        },
-        {
-          "feature": "src_pkts",
-          "mean_abs_shap": 0.35422990540735255
-        },
-        {
-          "feature": "dst_bytes",
-          "mean_abs_shap": 0.33291496642385815
-        },
-        {
-          "feature": "dst_pkts",
-          "mean_abs_shap": 0.24137406686405186
-        },
-        {
-          "feature": "proto",
-          "mean_abs_shap": 0.2314219661579234
-        },
-        {
-          "feature": "dns_RA",
-          "mean_abs_shap": 0.11801259550300623
-        }
-      ],
-      "per_class_top5": {
-        "backdoor": [
+  "_status": "LEGACY_SINGLE_SEED",
+  "_note": "Superseded by multi-seed results under results/<dataset>/seed_*/ and results/runs.csv. Do not cite these numbers as current.",
+  "_superseded_by": [
+    "results/runs.csv",
+    "results/MULTISEED_SUMMARY.md",
+    "results/ids_metrics.csv",
+    "results/xai_overhead.csv"
+  ],
+  "legacy_payload": {
+    "binary": {
+      "example": {
+        "n_alerts_available": 29651,
+        "n_alerts_explained": 200,
+        "alert_indices_sample": [
+          14066,
+          19267,
+          17047,
+          3404,
+          3417,
+          13439,
+          19484,
+          24882,
+          8926,
+          22980
+        ],
+        "top_features_global": [
           {
-            "feature": "src_ip_bytes",
-            "mean_abs_shap": 3.5971413209771823
-          },
-          {
-            "feature": "conn_state",
-            "mean_abs_shap": 1.8104036323215889
-          },
-          {
-            "feature": "duration",
-            "mean_abs_shap": 1.5265519201664208
+            "feature": "proto",
+            "mean_abs_shap": 1.8280308624846444
           },
           {
             "feature": "src_pkts",
-            "mean_abs_shap": 0.3853914743298768
+            "mean_abs_shap": 1.0131575107523247
+          },
+          {
+            "feature": "conn_state",
+            "mean_abs_shap": 0.6724077602791303
           },
           {
             "feature": "dst_pkts",
-            "mean_abs_shap": 0.3336577878956224
-          }
-        ],
-        "ddos": [
-          {
-            "feature": "conn_state",
-            "mean_abs_shap": 1.0983540093405202
+            "mean_abs_shap": 0.6079133983036127
           },
           {
-            "feature": "dst_ip_bytes",
-            "mean_abs_shap": 1.0621466126619987
+            "feature": "duration",
+            "mean_abs_shap": 0.6077038979400453
           },
           {
             "feature": "src_ip_bytes",
-            "mean_abs_shap": 0.8946197643702212
+            "mean_abs_shap": 0.5793405267471301
+          },
+          {
+            "feature": "dst_ip_bytes",
+            "mean_abs_shap": 0.4459990844334044
           },
           {
             "feature": "dst_bytes",
-            "mean_abs_shap": 0.7846454621970372
+            "mean_abs_shap": 0.34079458967773346
           },
           {
-            "feature": "duration",
-            "mean_abs_shap": 0.6618216001579303
-          }
-        ],
-        "dos": [
-          {
-            "feature": "conn_state",
-            "mean_abs_shap": 2.2706959262414923
+            "feature": "dns_qtype",
+            "mean_abs_shap": 0.28607732044858375
           },
           {
-            "feature": "src_ip_bytes",
-            "mean_abs_shap": 1.9626083340337284
-          },
-          {
-            "feature": "src_bytes",
-            "mean_abs_shap": 1.03825880015491
-          },
-          {
-            "feature": "duration",
-            "mean_abs_shap": 0.8796917211300034
-          },
-          {
-            "feature": "src_pkts",
-            "mean_abs_shap": 0.462313858723636
-          }
-        ],
-        "injection": [
-          {
-            "feature": "conn_state",
-            "mean_abs_shap": 0.9658182762123637
-          },
-          {
-            "feature": "src_bytes",
-            "mean_abs_shap": 0.8975033678389677
-          },
-          {
-            "feature": "duration",
-            "mean_abs_shap": 0.7841300395555391
-          },
-          {
-            "feature": "src_ip_bytes",
-            "mean_abs_shap": 0.698162769097806
-          },
-          {
-            "feature": "dst_ip_bytes",
-            "mean_abs_shap": 0.6626559634038862
-          }
-        ],
-        "mitm": [
-          {
-            "feature": "src_ip_bytes",
-            "mean_abs_shap": 0.8921935063681697
-          },
-          {
-            "feature": "duration",
-            "mean_abs_shap": 0.7651686206028756
-          },
-          {
-            "feature": "dst_ip_bytes",
-            "mean_abs_shap": 0.47267526430096213
-          },
-          {
-            "feature": "src_bytes",
-            "mean_abs_shap": 0.36738131310305855
-          },
-          {
-            "feature": "proto",
-            "mean_abs_shap": 0.2562834460962035
-          }
-        ],
-        "normal": [
-          {
-            "feature": "proto",
-            "mean_abs_shap": 1.3032320188687943
-          },
-          {
-            "feature": "src_ip_bytes",
-            "mean_abs_shap": 0.7518554385540138
-          },
-          {
-            "feature": "duration",
-            "mean_abs_shap": 0.6174181877747699
-          },
-          {
-            "feature": "src_pkts",
-            "mean_abs_shap": 0.6047039238423957
-          },
-          {
-            "feature": "dst_pkts",
-            "mean_abs_shap": 0.5130313224552389
-          }
-        ],
-        "password": [
-          {
-            "feature": "src_ip_bytes",
-            "mean_abs_shap": 2.7962992044258987
-          },
-          {
-            "feature": "src_bytes",
-            "mean_abs_shap": 1.0452200977455377
-          },
-          {
-            "feature": "conn_state",
-            "mean_abs_shap": 1.0302708611604718
-          },
-          {
-            "feature": "dst_ip_bytes",
-            "mean_abs_shap": 0.7548843601811873
-          },
-          {
-            "feature": "duration",
-            "mean_abs_shap": 0.6428474790593701
-          }
-        ],
-        "ransomware": [
-          {
-            "feature": "duration",
-            "mean_abs_shap": 2.2548758654253125
-          },
-          {
-            "feature": "conn_state",
-            "mean_abs_shap": 1.652951313937225
-          },
-          {
-            "feature": "src_ip_bytes",
-            "mean_abs_shap": 0.7782557135007824
-          },
-          {
-            "feature": "dst_ip_bytes",
-            "mean_abs_shap": 0.6713096767683067
-          },
-          {
-            "feature": "src_pkts",
-            "mean_abs_shap": 0.3984117304205867
-          }
-        ],
-        "scanning": [
-          {
-            "feature": "src_ip_bytes",
-            "mean_abs_shap": 3.323763105869607
-          },
-          {
-            "feature": "conn_state",
-            "mean_abs_shap": 0.8594444422161652
-          },
-          {
-            "feature": "duration",
-            "mean_abs_shap": 0.8456983017343301
-          },
-          {
-            "feature": "dst_bytes",
-            "mean_abs_shap": 0.5722226081217342
-          },
-          {
-            "feature": "dst_ip_bytes",
-            "mean_abs_shap": 0.5239840122297537
-          }
-        ],
-        "xss": [
-          {
-            "feature": "conn_state",
-            "mean_abs_shap": 1.2234822496549282
-          },
-          {
-            "feature": "src_bytes",
-            "mean_abs_shap": 0.9830314718917852
-          },
-          {
-            "feature": "src_ip_bytes",
-            "mean_abs_shap": 0.6187883127593988
-          },
-          {
-            "feature": "src_pkts",
-            "mean_abs_shap": 0.5134514115400193
-          },
-          {
-            "feature": "duration",
-            "mean_abs_shap": 0.4833985497130926
+            "feature": "service",
+            "mean_abs_shap": 0.28151722832070475
           }
         ]
-      }
+      },
+      "global_importance_csv": "/home/munkasiiiiir/Documents/Research with Ahasan Sir/results/xai_global_importance_binary_lightgbm.csv",
+      "figure": "/home/munkasiiiiir/Documents/Research with Ahasan Sir/figures/shap_global_binary_lightgbm.png"
     },
-    "global_importance_csv": "/home/munkasiiiiir/Documents/Research with Ahasan Sir/results/xai_global_importance_multiclass_lightgbm.csv",
-    "figure": "/home/munkasiiiiir/Documents/Research with Ahasan Sir/figures/shap_global_multiclass_lightgbm.png"
+    "multiclass": {
+      "example": {
+        "n_alerts_available": 29721,
+        "n_alerts_explained": 200,
+        "alert_indices_sample": [
+          14066,
+          19270,
+          17046,
+          3408,
+          3422,
+          13440,
+          19490,
+          24876,
+          8925,
+          22981
+        ],
+        "top_features_global": [
+          {
+            "feature": "src_ip_bytes",
+            "mean_abs_shap": 1.6313687469956812
+          },
+          {
+            "feature": "conn_state",
+            "mean_abs_shap": 1.1546071242285938
+          },
+          {
+            "feature": "duration",
+            "mean_abs_shap": 0.9461602285319635
+          },
+          {
+            "feature": "dst_ip_bytes",
+            "mean_abs_shap": 0.5468072640031777
+          },
+          {
+            "feature": "src_bytes",
+            "mean_abs_shap": 0.5275669077681342
+          },
+          {
+            "feature": "src_pkts",
+            "mean_abs_shap": 0.35422990540735255
+          },
+          {
+            "feature": "dst_bytes",
+            "mean_abs_shap": 0.33291496642385815
+          },
+          {
+            "feature": "dst_pkts",
+            "mean_abs_shap": 0.24137406686405186
+          },
+          {
+            "feature": "proto",
+            "mean_abs_shap": 0.2314219661579234
+          },
+          {
+            "feature": "dns_RA",
+            "mean_abs_shap": 0.11801259550300623
+          }
+        ],
+        "per_class_top5": {
+          "backdoor": [
+            {
+              "feature": "src_ip_bytes",
+              "mean_abs_shap": 3.5971413209771823
+            },
+            {
+              "feature": "conn_state",
+              "mean_abs_shap": 1.8104036323215889
+            },
+            {
+              "feature": "duration",
+              "mean_abs_shap": 1.5265519201664208
+            },
+            {
+              "feature": "src_pkts",
+              "mean_abs_shap": 0.3853914743298768
+            },
+            {
+              "feature": "dst_pkts",
+              "mean_abs_shap": 0.3336577878956224
+            }
+          ],
+          "ddos": [
+            {
+              "feature": "conn_state",
+              "mean_abs_shap": 1.0983540093405202
+            },
+            {
+              "feature": "dst_ip_bytes",
+              "mean_abs_shap": 1.0621466126619987
+            },
+            {
+              "feature": "src_ip_bytes",
+              "mean_abs_shap": 0.8946197643702212
+            },
+            {
+              "feature": "dst_bytes",
+              "mean_abs_shap": 0.7846454621970372
+            },
+            {
+              "feature": "duration",
+              "mean_abs_shap": 0.6618216001579303
+            }
+          ],
+          "dos": [
+            {
+              "feature": "conn_state",
+              "mean_abs_shap": 2.2706959262414923
+            },
+            {
+              "feature": "src_ip_bytes",
+              "mean_abs_shap": 1.9626083340337284
+            },
+            {
+              "feature": "src_bytes",
+              "mean_abs_shap": 1.03825880015491
+            },
+            {
+              "feature": "duration",
+              "mean_abs_shap": 0.8796917211300034
+            },
+            {
+              "feature": "src_pkts",
+              "mean_abs_shap": 0.462313858723636
+            }
+          ],
+          "injection": [
+            {
+              "feature": "conn_state",
+              "mean_abs_shap": 0.9658182762123637
+            },
+            {
+              "feature": "src_bytes",
+              "mean_abs_shap": 0.8975033678389677
+            },
+            {
+              "feature": "duration",
+              "mean_abs_shap": 0.7841300395555391
+            },
+            {
+              "feature": "src_ip_bytes",
+              "mean_abs_shap": 0.698162769097806
+            },
+            {
+              "feature": "dst_ip_bytes",
+              "mean_abs_shap": 0.6626559634038862
+            }
+          ],
+          "mitm": [
+            {
+              "feature": "src_ip_bytes",
+              "mean_abs_shap": 0.8921935063681697
+            },
+            {
+              "feature": "duration",
+              "mean_abs_shap": 0.7651686206028756
+            },
+            {
+              "feature": "dst_ip_bytes",
+              "mean_abs_shap": 0.47267526430096213
+            },
+            {
+              "feature": "src_bytes",
+              "mean_abs_shap": 0.36738131310305855
+            },
+            {
+              "feature": "proto",
+              "mean_abs_shap": 0.2562834460962035
+            }
+          ],
+          "normal": [
+            {
+              "feature": "proto",
+              "mean_abs_shap": 1.3032320188687943
+            },
+            {
+              "feature": "src_ip_bytes",
+              "mean_abs_shap": 0.7518554385540138
+            },
+            {
+              "feature": "duration",
+              "mean_abs_shap": 0.6174181877747699
+            },
+            {
+              "feature": "src_pkts",
+              "mean_abs_shap": 0.6047039238423957
+            },
+            {
+              "feature": "dst_pkts",
+              "mean_abs_shap": 0.5130313224552389
+            }
+          ],
+          "password": [
+            {
+              "feature": "src_ip_bytes",
+              "mean_abs_shap": 2.7962992044258987
+            },
+            {
+              "feature": "src_bytes",
+              "mean_abs_shap": 1.0452200977455377
+            },
+            {
+              "feature": "conn_state",
+              "mean_abs_shap": 1.0302708611604718
+            },
+            {
+              "feature": "dst_ip_bytes",
+              "mean_abs_shap": 0.7548843601811873
+            },
+            {
+              "feature": "duration",
+              "mean_abs_shap": 0.6428474790593701
+            }
+          ],
+          "ransomware": [
+            {
+              "feature": "duration",
+              "mean_abs_shap": 2.2548758654253125
+            },
+            {
+              "feature": "conn_state",
+              "mean_abs_shap": 1.652951313937225
+            },
+            {
+              "feature": "src_ip_bytes",
+              "mean_abs_shap": 0.7782557135007824
+            },
+            {
+              "feature": "dst_ip_bytes",
+              "mean_abs_shap": 0.6713096767683067
+            },
+            {
+              "feature": "src_pkts",
+              "mean_abs_shap": 0.3984117304205867
+            }
+          ],
+          "scanning": [
+            {
+              "feature": "src_ip_bytes",
+              "mean_abs_shap": 3.323763105869607
+            },
+            {
+              "feature": "conn_state",
+              "mean_abs_shap": 0.8594444422161652
+            },
+            {
+              "feature": "duration",
+              "mean_abs_shap": 0.8456983017343301
+            },
+            {
+              "feature": "dst_bytes",
+              "mean_abs_shap": 0.5722226081217342
+            },
+            {
+              "feature": "dst_ip_bytes",
+              "mean_abs_shap": 0.5239840122297537
+            }
+          ],
+          "xss": [
+            {
+              "feature": "conn_state",
+              "mean_abs_shap": 1.2234822496549282
+            },
+            {
+              "feature": "src_bytes",
+              "mean_abs_shap": 0.9830314718917852
+            },
+            {
+              "feature": "src_ip_bytes",
+              "mean_abs_shap": 0.6187883127593988
+            },
+            {
+              "feature": "src_pkts",
+              "mean_abs_shap": 0.5134514115400193
+            },
+            {
+              "feature": "duration",
+              "mean_abs_shap": 0.4833985497130926
+            }
+          ]
+        }
+      },
+      "global_importance_csv": "/home/munkasiiiiir/Documents/Research with Ahasan Sir/results/xai_global_importance_multiclass_lightgbm.csv",
+      "figure": "/home/munkasiiiiir/Documents/Research with Ahasan Sir/figures/shap_global_multiclass_lightgbm.png"
+    }
   }
 }

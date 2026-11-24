@@ -1,0 +1,18 @@
+LEGACY / SUPERSEDED FILES
+========================
+The following root-level result files come from the original single-seed
+ToN-IoT-only pipeline and are kept only for historical comparison:
+
+  - ids_detailed_reports.json
+  - xai_details.json
+  - xai_global_importance_binary_lightgbm.csv   (refreshed from ton_iot/seed_42)
+  - xai_global_importance_multiclass_lightgbm.csv (refreshed from ton_iot/seed_42)
+
+Canonical multi-seed sources (use these in the paper):
+  - runs.csv
+  - MULTISEED_SUMMARY.md
+  - joint_results_snapshot.txt
+  - ids_metrics.csv
+  - xai_overhead.csv
+  - <dataset>/findings.json
+  - <dataset>/seed_<s>/seed_metrics.json

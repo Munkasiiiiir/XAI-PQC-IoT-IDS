@@ -2,17 +2,18 @@
 
 **Title:** Resource-Aware Explainable Machine Learning for Post-Quantum-Secured IoT Intrusion Detection  
 **Supervisor decision:** Skip hardware integration (no Raspberry Pi / ESP32 deployment)  
-**Primary dataset:** `datasets/ToN_IoT/train_test_network.csv`
+**Datasets:** ToN-IoT Network (primary), UNSW-NB15, Edge-IIoTset  
+**Protocol:** 3 seeds `{42, 123, 2024}` × 3 datasets = **9 runs completed**
 
 ---
 
 ## Architecture (three planes)
 
 ```
-[ToN-IoT Network CSV]
+[ToN-IoT / UNSW-NB15 / Edge-IIoTset]
         |
         v
- Preprocessing / Feature Selection
+ Adapter + raw dedupe + leakage drops + stratified 80/20 (seeded)
         |
         v
  +------------------+     +------------------+     +------------------+
@@ -23,170 +24,90 @@
         |
         v
  Joint report: detection quality + explanation cost + crypto overhead
+ (mean ± sd over seeds; results/MULTISEED_SUMMARY.md)
 ```
 
 ---
 
-## Phase 0 — Setup (Day 1)
+## Phase status
 
-- [x] Novelty memo approved direction with Ahasan Sir
-- [x] Skip hardware
-- [x] Download ToN-IoT Network Train/Test
-- [ ] Create Python environment
-- [ ] Install: `pandas numpy scikit-learn lightgbm shap matplotlib seaborn joblib`
+| Phase | Status | Deliverable |
+|---|---|---|
+| 0 Setup | Done | `.venv`, deps |
+| 1 Dataset audit | Done | `datasets/ToN_IoT/dataset_audit_report.txt`, `datasets/registry.json` |
+| 2–4 Multi-seed IDS+XAI | Done | `src/run_dataset.py`, `results/runs.csv`, per-seed metrics |
+| 5 PQC software benches | Done (earlier; not re-run) | `results/pqc_benchmarks.csv` |
+| 6 Joint analysis | Done | `results/joint_results_snapshot.txt`, `MULTISEED_SUMMARY.md` |
+| 7 Writing | In progress | `docs/Paper_Outline_Draft.md` |
+
+---
+
+## Reproduce multi-seed runs
+
+See `MULTISEED_RUNBOOK.md`.
 
 ```bash
-cd "/home/munkasiiiiir/Documents/Research with Ahasan Sir"
-python3 -m venv .venv
-source .venv/bin/activate
-pip install pandas numpy scikit-learn lightgbm shap matplotlib seaborn joblib pyyaml
+export PYTHONHASHSEED=0
+python src/run_dataset.py --dataset ton_iot   --seed 42
+# ... remaining 8 dataset-seed pairs ...
+python src/aggregate.py
 ```
 
----
-
-## Phase 1 — Dataset Audit (Day 1–2)  ← START HERE
-
-**Goal:** Understand data before modeling.
-
-- [ ] Load CSV; count rows/columns
-- [ ] Class balance (`label`, `type`)
-- [ ] Missing values and `-` placeholders
-- [ ] Identify leakage features (`src_ip`, `dst_ip`, ports, etc.)
-- [ ] Decide binary vs multi-class experiments
-
-**Deliverable:** `datasets/ToN_IoT/dataset_audit_report.txt`
+Legacy single-seed scripts (`src/02_preprocess.py` … `05_pqc_benchmark.py`) are retained for reference only.
 
 ---
 
-## Phase 2 — Preprocessing (Day 2–3)
+## Headline numbers (n=3; mean ± sd)
 
-**Goal:** Clean, encode, split safely.
+| Dataset | Multi LGBM macro-F1 | Binary LGBM F1 | Multi SHAP ms/alert |
+|---|---|---|---|
+| ToN-IoT | 0.9546±0.0018 | 0.9986±0.0001 | 28.69±3.29 |
+| UNSW-NB15 | 0.5912±0.0114 | 0.9580±0.0011 | 41.66±0.59 |
+| Edge-IIoTset | 0.8314±0.0022 | 0.9699±0.0006 | 23.80±0.59 |
 
-1. Replace `-` with missing / category `unknown`
-2. Drop leakage columns: `src_ip`, `dst_ip`, `src_port`, `dst_port`
-3. Encode categoricals (ordinal/one-hot as appropriate)
-4. Stratified train/test split (e.g., 80/20) — same split for all models
-5. Optional: feature selection (mutual information / RF importance)
-6. Save processed arrays: `artifacts/processed/`
-
-**Deliverable:** preprocessing script + processed dataset files
+PQC (host PC): ML-KEM-512 < 0.1 ms/op; ML-DSA-44 sign ≈ 6.9 ms.
 
 ---
 
-## Phase 3 — Intrusion Detection Models (Day 3–5)
-
-**Goal:** Establish detection baselines.
-
-| Model | Role |
-|---|---|
-| Random Forest | Interpretable baseline |
-| LightGBM | Primary detector |
-| (Optional later) simple MLP/CNN | Compare vs Sharma & Rani spirit |
-
-**Metrics (must report):**
-- Accuracy, Precision, Recall, F1
-- **Macro-F1** (imbalance)
-- Per-class recall (especially `mitm`)
-- Inference time, model size
-
-**Tasks:** binary classification first, then multi-class.
-
-**Deliverable:** `results/ids_metrics.csv` + confusion matrices
-
----
-
-## Phase 4 — Explainability (Day 5–7)
-
-**Goal:** Explain alerts; measure cost.
-
-1. Fit TreeSHAP on LightGBM (and/or RF)
-2. Global feature importance summary
-3. Local explanations for sampled alerts only (not every row)
-4. Measure:
-   - explanation latency (ms/alert)
-   - memory overhead
-5. Optional offline LIME on a small sample for comparison
-
-**Deliverable:** SHAP plots + `results/xai_overhead.csv`
-
----
-
-## Phase 5 — PQC Software Benchmarks (Day 7–9)
-
-**Goal:** Crypto overhead without hardware.
-
-1. Install `liboqs` / `oqs-python` if available, or use documented library timings carefully
-2. Benchmark on your PC:
-   - ML-KEM (Kyber): KeyGen, Encaps, Decaps
-   - ML-DSA (Dilithium): KeyGen, Sign, Verify
-3. Record: mean latency, key/ciphertext/signature sizes
-4. Compare vs classical baseline (e.g., ECDH/ECDSA) if available
-
-**Deliverable:** `results/pqc_benchmarks.csv`  
-**Do not claim:** Raspberry Pi / ESP32 validation
-
----
-
-## Phase 6 — Joint Analysis (Day 9–11)
-
-**Goal:** Answer the research questions.
-
-Build one summary table:
-
-| Component | Metric | Value |
-|---|---|---|
-| IDS | Macro-F1, latency | … |
-| XAI | ms/explanation | … |
-| PQC | ms/op, sizes | … |
-
-Discuss bottlenecks: detection vs explanation vs crypto (software).
-
-**Deliverable:** figures + discussion outline for paper
-
----
-
-## Phase 7 — Writing (Day 11–end)
-
-1. Related work (Sharma & Rani; Li et al.; XAI-IDS; PQC surveys)
-2. Methodology (three planes; no hardware)
-3. Results
-4. Limitations (no physical edge deployment)
-5. Conclusion
-
-**Target narrative:**  
-Resource-aware classical ML + measured TreeSHAP + software PQC as an alternative to Sharma & Rani’s deep IDS — distinct from Li et al.’s SDN/GNN setting.
-
----
-
-## Folder structure to create
+## Folder structure
 
 ```
 Research with Ahasan Sir/
-├── datasets/ToN_IoT/
+├── datasets/
+│   ├── ToN_IoT/
+│   ├── registry.json
+│   ├── UNSW_NB15/          # local only (gitignored)
+│   └── Edge_IIoTset/       # local only (gitignored)
 ├── src/
-│   ├── 01_audit_dataset.py
-│   ├── 02_preprocess.py
-│   ├── 03_train_ids.py
-│   ├── 04_xai_shap.py
-│   └── 05_pqc_benchmark.py
+│   ├── run_dataset.py      # multi-seed entrypoint
+│   ├── harness.py
+│   ├── aggregate.py
+│   ├── adapters/
+│   ├── 02_preprocess.py    # legacy
+│   ├── 03_train_ids.py     # legacy
+│   ├── 04_xai_shap.py      # legacy
+│   └── 05_pqc_benchmark.py # legacy
 ├── artifacts/
 ├── results/
 ├── figures/
-└── docs/
+├── docs/
+├── MULTISEED_RUNBOOK.md
+└── writing/preanalysis.json
 ```
 
 ---
 
-## What NOT to do yet
+## What NOT to do
 
 - Do not implement ESP32 / Raspberry Pi code
 - Do not claim first PQC+XAI+IDS paper
 - Do not say XAI replaces deep learning
 - Do not keep IP/port features in the main model
 - Do not report accuracy alone under imbalance
+- Do not treat cross-dataset macro-F1 as a significance test at n=3
 
 ---
 
 ## Immediate next action
 
-**Finish Phase 1 audit → start Phase 2 preprocessing script.**
+**Write the Results section from `results/MULTISEED_SUMMARY.md` and refresh manuscript figures to match multi-seed timings.**
