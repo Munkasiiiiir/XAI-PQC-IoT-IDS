@@ -1,0 +1,15 @@
+========================================================================
+Edge-IIoTset | seed 19 | 2026-11-25T07:47:02Z
+========================================================================
+rows: raw=157,800 dedup=156,986 (-814) train=125,588 test=31,398
+features=42 classes=15
+
+binary      RandomForest acc=0.9667 macroF1=0.9348 f1=0.9804 size=98.6MB infer=0.0187ms
+binary      LightGBM     acc=0.9496 macroF1=0.9109 f1=0.9696 size=2.0MB infer=0.0131ms
+multiclass  RandomForest acc=0.8589 macroF1=0.8287 f1=0.8287 size=1038.4MB infer=0.0314ms
+multiclass  LightGBM     acc=0.8608 macroF1=0.8307 f1=0.8307 size=35.9MB infer=0.4048ms
+
+XAI binary: 3.644381333288038 ms/alert (200 alerts)
+XAI multiclass: 46.587224499987016 ms/alert (200 alerts)
+
+Full detail: C:\Users\YourName\Documents\Papers\paper 6\XAI-PQC-IoT-IDS\results\edge_iiot\seed_19\seed_metrics.json

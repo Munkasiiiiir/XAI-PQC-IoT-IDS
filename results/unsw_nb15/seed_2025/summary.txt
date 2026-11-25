@@ -1,0 +1,15 @@
+========================================================================
+UNSW-NB15 | seed 2025 | 2026-11-25T07:22:53Z
+========================================================================
+rows: raw=257,673 dedup=257,673 (-0) train=206,138 test=51,535
+features=42 classes=10
+
+binary      RandomForest acc=0.9530 macroF1=0.9491 f1=0.9632 size=277.0MB infer=0.0144ms
+binary      LightGBM     acc=0.9477 macroF1=0.9444 f1=0.9580 size=2.0MB infer=0.0139ms
+multiclass  RandomForest acc=0.8041 macroF1=0.5670 f1=0.5670 size=1113.2MB infer=0.0380ms
+multiclass  LightGBM     acc=0.7822 macroF1=0.5870 f1=0.5870 size=26.3MB infer=0.2665ms
+
+XAI binary: 3.642132333310049 ms/alert (200 alerts)
+XAI multiclass: 42.24443433333363 ms/alert (200 alerts)
+
+Full detail: C:\Users\YourName\Documents\Papers\paper 6\XAI-PQC-IoT-IDS\results\unsw_nb15\seed_2025\seed_metrics.json

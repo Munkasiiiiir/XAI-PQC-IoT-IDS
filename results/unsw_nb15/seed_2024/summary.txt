@@ -12,4 +12,4 @@ multiclass  LightGBM     acc=0.7801 macroF1=0.5844 f1=0.5844 size=26.4MB infer=0
 XAI binary: 4.333565000000211 ms/alert (200 alerts)
 XAI multiclass: 41.98961016666848 ms/alert (200 alerts)
 
-Full detail: D:\XAI-PQC-IoT-IDS\results\unsw_nb15\seed_2024\seed_metrics.json
+Full detail: C:\Users\YourName\Documents\Papers\paper 6\XAI-PQC-IoT-IDS\results\unsw_nb15\seed_2024\seed_metrics.json
