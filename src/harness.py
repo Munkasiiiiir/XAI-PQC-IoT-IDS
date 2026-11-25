@@ -265,6 +265,10 @@ def train_one(kind: str, task: str, data: dict, seed: int, model_dir: Path):
     path = model_dir / f"{task}_{kind}.joblib"
     joblib.dump(model, path)
     size_mb = path.stat().st_size / (1024 * 1024)
+    if kind == "rf":
+        # The size is recorded in the ledger, but the file itself is derived
+        # data and can reach over 1 GB per seed. Keep LightGBM binaries only.
+        path.unlink()
 
     row = {
         "run_id": f"{data['dataset']}_s{seed}_{task}_{model_name}",

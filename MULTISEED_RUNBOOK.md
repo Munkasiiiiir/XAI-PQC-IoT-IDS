@@ -5,7 +5,7 @@
 | Item | Decision |
 |---|---|
 | Datasets | ToN-IoT Network (primary), UNSW-NB15, Edge-IIoTset |
-| Seeds | `{42, 123, 2024}` per dataset (9 dataset-seed runs total) |
+| Seeds | 8 per dataset: `{42, 123, 2024, 7, 13, 19, 2025, 2026}` (24 dataset-seed runs total) |
 | Seed semantics | One master seed drives both the 80/20 stratified split and every model's `random_state` |
 | Primary metric | multi-class macro-F1; binary F1 (positive class = attack) |
 | Models | RF + LightGBM, binary + multi-class; hyperparameters frozen (no tuning) |
@@ -20,17 +20,18 @@
 
 ```bash
 $env:PYTHONHASHSEED = "0"
-python src/run_dataset.py --dataset ton_iot   --seed 42
-python src/run_dataset.py --dataset ton_iot   --seed 123
-python src/run_dataset.py --dataset ton_iot   --seed 2024
-python src/run_dataset.py --dataset unsw_nb15 --seed 42
-python src/run_dataset.py --dataset unsw_nb15 --seed 123
-python src/run_dataset.py --dataset unsw_nb15 --seed 2024
-python src/run_dataset.py --dataset edge_iiot --seed 42
-python src/run_dataset.py --dataset edge_iiot --seed 123
-python src/run_dataset.py --dataset edge_iiot --seed 2024
+foreach ($d in @('ton_iot', 'unsw_nb15', 'edge_iiot')) {
+  foreach ($s in @(42, 123, 2024, 7, 13, 19, 2025, 2026)) {
+    python src/run_dataset.py --dataset $d --seed $s
+  }
+}
 python src/aggregate.py
 ```
+
+The original plan froze three seeds. Seeds 7, 13, 19, 2025 and 2026 were added
+later and are recorded in `writing/preanalysis_extension.json`. All seeds are
+reported. Random Forest binaries are not kept; their sizes and every metric
+stay in `results/runs.csv`.
 
 ## Expected raw files
 

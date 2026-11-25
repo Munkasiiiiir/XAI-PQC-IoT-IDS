@@ -57,7 +57,7 @@
       "binary": "Attack_label",
       "multi": "Attack_type"
     },
-    "updated_utc": "2026-11-24T14:23:50Z"
+    "updated_utc": "2026-11-25T08:08:24Z"
   },
   "ton_iot": {
     "class_names": [
@@ -105,7 +105,7 @@
       "binary": "label",
       "multi": "type"
     },
-    "updated_utc": "2026-11-24T14:23:50Z"
+    "updated_utc": "2026-11-25T07:00:59Z"
   },
   "unsw_nb15": {
     "class_names": [
@@ -147,6 +147,6 @@
       "binary": "label",
       "multi": "attack_cat"
     },
-    "updated_utc": "2026-11-24T14:23:50Z"
+    "updated_utc": "2026-11-25T07:38:03Z"
   }
 }

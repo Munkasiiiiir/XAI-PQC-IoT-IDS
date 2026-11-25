@@ -1,0 +1,15 @@
+========================================================================
+ToN-IoT | seed 19 | 2026-11-25T06:46:36Z
+========================================================================
+rows: raw=211,043 dedup=190,474 (-20,569) train=152,379 test=38,095
+features=30 classes=10
+
+binary      RandomForest acc=0.9978 macroF1=0.9969 f1=0.9986 size=15.8MB infer=0.0109ms
+binary      LightGBM     acc=0.9980 macroF1=0.9970 f1=0.9987 size=2.0MB infer=0.0240ms
+multiclass  RandomForest acc=0.9768 macroF1=0.9530 f1=0.9530 size=161.8MB infer=0.0211ms
+multiclass  LightGBM     acc=0.9792 macroF1=0.9528 f1=0.9528 size=25.6MB infer=0.3076ms
+
+XAI binary: 3.001434333321716 ms/alert (200 alerts)
+XAI multiclass: 26.2867944999986 ms/alert (200 alerts)
+
+Full detail: C:\Users\YourName\Documents\Papers\paper 6\XAI-PQC-IoT-IDS\results\ton_iot\seed_19\seed_metrics.json

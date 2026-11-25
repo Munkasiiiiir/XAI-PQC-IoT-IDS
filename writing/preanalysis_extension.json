@@ -1,0 +1,35 @@
+{
+  "added_seeds": [
+    7,
+    13,
+    19,
+    2025,
+    2026
+  ],
+  "all_seeds": [
+    42,
+    123,
+    2024,
+    7,
+    13,
+    19,
+    2025,
+    2026
+  ],
+  "created_utc": "2026-11-25T06:34:38Z",
+  "disclosure": "The five extra seeds were chosen after reviewing the three-seed results. All seeds, old and new, are reported. No run is dropped.",
+  "extension_sha256": "9be82afecfb64fd1f7473cab1464346f8c2bbab3e235c9fb66f620750af1e322",
+  "frozen_plan_unchanged": true,
+  "original_plan": "writing/preanalysis.json",
+  "original_plan_sha256": "590b8f16af04345dcc9dcdd9eebe98d8f7bf73bbef227509742c2fe87fe5c11e",
+  "original_seeds": [
+    42,
+    123,
+    2024
+  ],
+  "reason": "The three-seed run left a wide standard deviation on UNSW-NB15 (0.0114 macro-F1). More seeds give a better variance estimate.",
+  "seeds_per_dataset": 8,
+  "selective_reporting": "none",
+  "storage_policy": "Random Forest binaries are not kept; their sizes and all metrics stay in results/runs.csv. LightGBM binaries are kept.",
+  "total_dataset_seed_runs": 24
+}

@@ -42,7 +42,7 @@ def main() -> None:
     md = [
         "# Multi-seed findings",
         "",
-        "n=3 seeds: mean +/- sd (min-max). Cross-dataset macro-F1 is descriptive, not a head-to-head test.",
+        "n=8 seeds: mean +/- sd (min-max). Cross-dataset macro-F1 is descriptive, not a head-to-head test.",
         "",
     ]
 
@@ -107,7 +107,7 @@ def main() -> None:
             "dataset": dataset,
             "seeds": seeds,
             "n_seeds": len(seeds),
-            "note": "mean +/- sd and range over seeds; no significance tests at n=3",
+            "note": "mean +/- sd and range over seeds; no significance tests at n=8",
             "by_task_model": by_task_model,
         }
         (dataset_dir / "findings.json").write_text(json.dumps(findings, indent=2), encoding="utf-8")
